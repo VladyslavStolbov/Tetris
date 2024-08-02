@@ -1,3 +1,5 @@
+using UnityEngine.Tilemaps;
+
 public enum Tetromino
 {
     I,
@@ -9,3 +11,8 @@ public enum Tetromino
     Z
 }
 
+public struct TetrominoData
+{
+    public Tetromino Tetromino;
+    public Tile Tile;
+}
