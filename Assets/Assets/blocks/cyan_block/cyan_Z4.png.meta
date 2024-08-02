@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cyan_Z4_0: -3084535238413665357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
