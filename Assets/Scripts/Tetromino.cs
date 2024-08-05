@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public enum Tetromino
@@ -22,6 +21,6 @@ public struct TetrominoData
 
     public void Initialize()
     {
-        this.cells = Data.Cells[this.tetromino];
+        cells = Data.Cells[tetromino];
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -11,25 +8,25 @@ public class Board : MonoBehaviour
     public Piece activePiece { get; private set; }
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
-    public Vector2Int boardSize = new Vector2Int(10, 20);
+    public Vector2Int boardSize = new (10, 20);
 
     public RectInt Bounds
     {
         get
         {
-            Vector2Int position = new Vector2Int(-this.boardSize.x / 2, -this.boardSize.y / 2);
-            return new RectInt(position, this.boardSize);
+            Vector2Int position = new (-boardSize.x / 2, -boardSize.y / 2);
+            return new RectInt(position, boardSize);
         }
     }
     
     private void Awake()
     {
-        this.tilemap = GetComponentInChildren<Tilemap>();
-        this.activePiece = GetComponentInChildren<Piece>();
+        tilemap = GetComponentInChildren<Tilemap>();
+        activePiece = GetComponentInChildren<Piece>();
         
-        for (int i = 0; i < this.tetrominoes.Length; i++)
+        for (int i = 0; i < tetrominoes.Length; i++)
         {
-            this.tetrominoes[i].Initialize();
+            tetrominoes[i].Initialize();
         }
     }
 
@@ -40,11 +37,11 @@ public class Board : MonoBehaviour
 
     public void SpawnPiece()
     {
-        int random = Random.Range(0, this.tetrominoes.Length);
-        TetrominoData data = this.tetrominoes[random];
+        int random = Random.Range(0, tetrominoes.Length);
+        TetrominoData data = tetrominoes[random];
         
-        this.activePiece.Initialize(this, this.spawnPosition, data);
-        Set(this.activePiece);
+        activePiece.Initialize(this, spawnPosition, data);
+        Set(activePiece);
     }
 
     public void Set(Piece piece)
@@ -52,13 +49,22 @@ public class Board : MonoBehaviour
         for (int i = 0; i < piece.cells.Length; i++)
         {
             Vector3Int tilePosition = piece.cells[i] + piece.position;
-            this.tilemap.SetTile(tilePosition, piece.data.tile);
+            tilemap.SetTile(tilePosition, piece.data.tile);
+        }
+    }
+    
+    public void Clear(Piece piece)
+    {
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
+            Vector3Int tilePosition = piece.cells[i] + piece.position;
+            tilemap.SetTile(tilePosition, null);
         }
     }
 
     public bool IsValidPosition(Piece piece, Vector3Int position)
     {
-        RectInt bounds = this.Bounds;
+        RectInt bounds = Bounds;
 
         for (int i = 0; i < piece.cells.Length; i++)
         {
@@ -69,10 +75,11 @@ public class Board : MonoBehaviour
                 return false;
             }
 
-            if (this.tilemap.HasTile(tilePosition))
+            if (tilemap.HasTile(tilePosition))
             {
                 return false;
             }
         }
+        return true;            
     }
 }

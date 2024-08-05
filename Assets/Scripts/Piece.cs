@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Piece : MonoBehaviour
@@ -14,33 +13,64 @@ public class Piece : MonoBehaviour
 		this.position = position;
 		this.data = data;
 
-		if (this.cells == null)
+		if (cells == null)
 		{
-			this.cells = new Vector3Int[data.cells.Length];
+			cells = new Vector3Int[data.cells.Length];
 		}
 
 		for (int i = 0; i < data.cells.Length; i++)
 		{
-			this.cells[i] = (Vector3Int)data.cells[i];
+			cells[i] = (Vector3Int)data.cells[i];
 		}
 	}
 
 	private void Update()
 	{
+		board.Clear(this);
+		
 		if (Input.GetKeyDown(KeyCode.A))	
 		{
 			Move(Vector2Int.left);	
 		}
-		else if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.D))
 		{
 			Move(Vector2Int.right);
 		}
+
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			Move(Vector2Int.down);
+		}
+
+		if (Input.GetKeyDown("space"))
+		{
+			HardDrop();
+		}
+		
+		board.Set(this);
 	}
 
-	private void Move(Vector2Int translation)
+	private void HardDrop()
 	{
-		Vector3Int newPosition = this.position;
+		while (Move(Vector2Int.down))
+		{
+			continue;
+		}
+	}
+
+	private bool Move(Vector2Int translation)
+	{
+		Vector3Int newPosition = position;
 		newPosition.x += translation.x;
 		newPosition.y += translation.y;
+
+		bool valid = board.IsValidPosition(this, newPosition);
+
+		if (valid)
+		{
+			position = newPosition;
+		}
+
+		return valid;
 	}
 }
