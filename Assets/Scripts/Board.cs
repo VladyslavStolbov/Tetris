@@ -70,15 +70,16 @@ public class Board : MonoBehaviour
         {
             Vector3Int tilePosition = piece.cells[i] + position;
 
+            if (tilemap.HasTile(tilePosition))
+            {
+                return false;
+            }
+            
             if (!bounds.Contains((Vector2Int)tilePosition))
             {
                 return false;
             }
 
-            if (tilemap.HasTile(tilePosition))
-            {
-                return false;
-            }
         }
         return true;            
     }

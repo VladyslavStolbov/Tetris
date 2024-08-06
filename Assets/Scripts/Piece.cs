@@ -70,7 +70,6 @@ public class Piece : MonoBehaviour
 		{
 			position = newPosition;
 		}
-
 		return valid;
 	}
 }
