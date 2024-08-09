@@ -1,17 +1,20 @@
 using UnityEngine;
 
+
 public class Piece : MonoBehaviour
 {
 	public Board board { get; private set; }
 	public TetrominoData data { get; private set; }
 	public Vector3Int[] cells { get; private set; }
 	public Vector3Int position { get; private set; }
+	public int rotationIndex { get; private set; }
 	
 	public void Initialize(Board board, Vector3Int position, TetrominoData data)
 	{
 		this.board = board;
 		this.position = position;
 		this.data = data;
+		this.rotationIndex = 0;
 
 		if (cells == null)
 		{
@@ -46,6 +49,15 @@ public class Piece : MonoBehaviour
 		{
 			HardDrop();
 		}
+
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			Rotate(-1);
+		}
+		else if (Input.GetKeyDown(KeyCode.E))
+		{
+			Rotate(1);
+		}
 		
 		board.Set(this);
 	}
@@ -71,5 +83,10 @@ public class Piece : MonoBehaviour
 			position = newPosition;
 		}
 		return valid;
+	}
+
+	private void Rotate(int rotation)
+	{
+		rotationIndex += rotation;
 	}
 }
