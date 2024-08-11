@@ -85,8 +85,44 @@ public class Piece : MonoBehaviour
 		return valid;
 	}
 
-	private void Rotate(int rotation)
+	private void Rotate(int direction)
 	{
-		rotationIndex += rotation;
+		rotationIndex += Wrap(rotationIndex + direction, 0, 4);
+
+		for (int i = 0; i < cells.Length; i++)
+		{
+			Vector3 cell = cells[i];
+			int x, y;
+
+			switch (data.tetromino)
+			{
+				case Tetromino.I:
+				case Tetromino.O:
+					cell.x -= 0.5f;
+					cell.y -= 0.5f;
+					x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
+					y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+					break;
+				
+				default:
+					x = Mathf.RoundToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
+					y = Mathf.RoundToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+					break;
+			}
+
+			cells[i] = new Vector3Int(x, y, 0);
+		}
+	}
+
+	private int Wrap(int input, int min, int max)
+	{
+		if (input < min)
+		{
+			return max - (min - input) % (max - min);
+		}
+		else
+		{
+			return min + (input - min) % (max - min);
+		}
 	}
 }
