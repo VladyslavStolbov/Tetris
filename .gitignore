@@ -79,3 +79,4 @@ crashlytics-build.properties
 Assets/Plugins
 Assets/Plugins.meta
 ToDo.md
+*.pur
