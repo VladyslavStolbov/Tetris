@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -13,6 +15,8 @@ public class Board : MonoBehaviour
     public Vector3Int previewPosition = new(10, 5, 0);
     public Vector2Int boardSize = new(10, 20);
 
+    private Queue _history = new ();
+    
     public RectInt Bounds
     {
         get
@@ -29,8 +33,7 @@ public class Board : MonoBehaviour
         nextPiece = gameObject.AddComponent<Piece>();
         nextPiece.enabled = false;
 
-        for (int i = 0; i < tetrominoes.Length; i++)
-        {
+        for (int i = 0; i < tetrominoes.Length; i++) {
             tetrominoes[i].Initialize();
         }
     }
@@ -42,19 +45,19 @@ public class Board : MonoBehaviour
     }
 
     private void SetNextPiece()
+    
     {
-        if (nextPiece.cells != null)
-        {
+        if (nextPiece.cells != null) {
             Clear(nextPiece);
         }
 
         int random = Random.Range(0, tetrominoes.Length);
         TetrominoData data = tetrominoes[random];
-
         nextPiece.Initialize(this, previewPosition, data);
+        
         Set(nextPiece);
     }
-    
+
     public void SpawnPiece()
     {
         activePiece.Initialize(this, spawnPosition, nextPiece.data);
