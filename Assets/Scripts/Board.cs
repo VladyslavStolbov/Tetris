@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -12,7 +15,6 @@ public class Board : MonoBehaviour
     public Vector3Int spawnPosition = new(0, 8, 0);
     public Vector3Int previewPosition = new(10, 5, 0);
     public Vector2Int boardSize = new(10, 20);
-
     public RectInt Bounds
     {
         get
@@ -21,6 +23,8 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
+    private List<int> _bag = new (); 
+
 
     private void Awake()
     {
@@ -29,32 +33,52 @@ public class Board : MonoBehaviour
         nextPiece = gameObject.AddComponent<Piece>();
         nextPiece.enabled = false;
 
-        for (int i = 0; i < tetrominoes.Length; i++)
-        {
+        for (int i = 0; i < tetrominoes.Length; i++) {
             tetrominoes[i].Initialize();
         }
     }
 
     private void Start()
     {
+        FillBag();
         SetNextPiece();
         SpawnPiece();
     }
 
-    private void SetNextPiece()
+    private void FillBag()
     {
-        if (nextPiece.cells != null)
+        HashSet<int> temp = new();
+        int capacity = 7;
+        while (temp.Count != capacity)
         {
+            int random = Random.Range(0, tetrominoes.Length);
+            temp.Add(random);
+        }
+
+        _bag = temp.ToList();
+    }
+
+    private void SetNextPiece()
+    
+    {
+        if (nextPiece.cells != null) {
             Clear(nextPiece);
         }
 
-        int random = Random.Range(0, tetrominoes.Length);
-        TetrominoData data = tetrominoes[random];
-
+        if (_bag.Count == 0)
+        {
+            FillBag();
+        }
+        
+        int random = Random.Range(0, _bag.Count );
+        TetrominoData data = tetrominoes[_bag[random]];
+        _bag.RemoveAt(random);
+        
         nextPiece.Initialize(this, previewPosition, data);
+
         Set(nextPiece);
     }
-    
+
     public void SpawnPiece()
     {
         activePiece.Initialize(this, spawnPosition, nextPiece.data);
