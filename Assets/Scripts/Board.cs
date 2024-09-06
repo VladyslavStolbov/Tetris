@@ -48,7 +48,7 @@ public class Board : MonoBehaviour
     private void FillBag()
     {
         HashSet<int> temp = new();
-        int capacity = 4;
+        int capacity = 7;
         while (temp.Count != capacity)
         {
             int random = Random.Range(0, tetrominoes.Length);
