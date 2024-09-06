@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -14,9 +15,6 @@ public class Board : MonoBehaviour
     public Vector3Int spawnPosition = new(0, 8, 0);
     public Vector3Int previewPosition = new(10, 5, 0);
     public Vector2Int boardSize = new(10, 20);
-
-    private Queue _history = new ();
-    
     public RectInt Bounds
     {
         get
@@ -25,6 +23,8 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
+    private List<int> _bag = new (); 
+
 
     private void Awake()
     {
@@ -40,8 +40,22 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
+        FillBag();
         SetNextPiece();
         SpawnPiece();
+    }
+
+    private void FillBag()
+    {
+        HashSet<int> temp = new();
+        int capacity = 4;
+        while (temp.Count != capacity)
+        {
+            int random = Random.Range(0, tetrominoes.Length);
+            temp.Add(random);
+        }
+
+        _bag = temp.ToList();
     }
 
     private void SetNextPiece()
@@ -51,10 +65,17 @@ public class Board : MonoBehaviour
             Clear(nextPiece);
         }
 
-        int random = Random.Range(0, tetrominoes.Length);
-        TetrominoData data = tetrominoes[random];
-        nextPiece.Initialize(this, previewPosition, data);
+        if (_bag.Count == 0)
+        {
+            FillBag();
+        }
         
+        int random = Random.Range(0, _bag.Count );
+        TetrominoData data = tetrominoes[_bag[random]];
+        _bag.RemoveAt(random);
+        
+        nextPiece.Initialize(this, previewPosition, data);
+
         Set(nextPiece);
     }
 
