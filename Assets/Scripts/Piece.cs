@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Piece : MonoBehaviour
@@ -7,10 +8,11 @@ public class Piece : MonoBehaviour
 	public Vector3Int[] cells { get; private set; }
 	public Vector3Int position { get; private set; }
 	public int rotationIndex { get; private set; }
+	public TetrisInput tetrisInput { get; private set; }
 
 	public float stepDelay = 1f;
 	public float lockDelay = 0.5f;
-
+	
 	private float stepTime;
 	private float lockTime;
 	
@@ -35,40 +37,31 @@ public class Piece : MonoBehaviour
 		}
 	}
 
+	private void Awake()
+	{
+		tetrisInput = new TetrisInput();
+		
+		tetrisInput.Gameplay.RotateLeft.perfo med += ctx => Rotate(-1);
+		tetrisInput.Gameplay.RotateRight.performed += ctx => Rotate(1);
+		tetrisInput.Gameplay.HardDrop.performed += ctx => HardDrop();	
+	}
+
+	private void OnEnable()
+	{
+		tetrisInput.Enable();	
+	}
+
+	private void OnDisable()
+	{
+		tetrisInput.Disable();
+	}
+
 	private void Update()
 	{
 		board.Clear(this);
 
 		lockTime += Time.deltaTime;
 		
-		if (Input.GetKeyDown(KeyCode.A))	
-		{
-			Move(Vector2Int.left);	
-		}
-		if (Input.GetKeyDown(KeyCode.D))
-		{
-			Move(Vector2Int.right);
-		}
-
-		if (Input.GetKeyDown(KeyCode.S))
-		{
-			Move(Vector2Int.down);
-		}
-
-		if (Input.GetKeyDown("space"))
-		{
-			HardDrop();
-		}
-
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			Rotate(-1);
-		}
-		else if (Input.GetKeyDown(KeyCode.E))
-		{
-			Rotate(1);
-		}
-
 		if (Time.time >= stepTime)
 		{
 			Step();

@@ -29,7 +29,6 @@ public class Board : MonoBehaviour
     private void Awake()
     {
         tilemap = GetComponentInChildren<Tilemap>();
-        activePiece = GetComponentInChildren<Piece>();
         nextPiece = gameObject.AddComponent<Piece>();
         nextPiece.enabled = false;
 
@@ -40,6 +39,8 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
+    activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
+        
         FillBag();
         SetNextPiece();
         SpawnPiece();
