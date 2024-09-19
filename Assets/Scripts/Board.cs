@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -38,8 +37,8 @@ public class Board : MonoBehaviour
     }
 
     private void Start()
-    {
-    activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
+    { 
+        activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
         
         FillBag();
         SetNextPiece();
@@ -130,11 +129,13 @@ public class Board : MonoBehaviour
 
             if (tilemap.HasTile(tilePosition))
             {
+                Debug.Log("Has tile");
                 return false;
             }
 
             if (!bounds.Contains((Vector2Int)tilePosition))
             {
+                Debug.Log($"Position {tilePosition} is out of bounds!");
                 return false;
             }
         }

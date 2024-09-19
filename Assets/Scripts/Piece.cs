@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Piece : MonoBehaviour
 {
@@ -42,7 +40,8 @@ public class Piece : MonoBehaviour
 	{
 		tetrisInput = new TetrisInput();
 		
-		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1) ;
+		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1);
+		tetrisInput.Gameplay.RotateRight.performed += context => Rotate(1); 
 		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
 	}
 
@@ -93,13 +92,20 @@ public class Piece : MonoBehaviour
 
 	private void HardDrop()
 	{
-		while (Move(Vector2Int.down))
+		board.Clear(this);
+		
+		Vector3Int dropPosition = position;
+
+		while (board.IsValidPosition(this, dropPosition + Vector3Int.down))
 		{
-			continue;
+			dropPosition += Vector3Int.down;
 		}
+
+		position = dropPosition;
+		board.Set(this);
 		
 		Debug.Log("HardDrop");
-		Lock();	
+		Lock();
 	}
 
 	private bool Move(Vector2Int translation)
