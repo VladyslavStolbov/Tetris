@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Piece : MonoBehaviour
 {
@@ -41,9 +42,8 @@ public class Piece : MonoBehaviour
 	{
 		tetrisInput = new TetrisInput();
 		
-		tetrisInput.Gameplay.RotateLeft.perfo med += ctx => Rotate(-1);
-		tetrisInput.Gameplay.RotateRight.performed += ctx => Rotate(1);
-		tetrisInput.Gameplay.HardDrop.performed += ctx => HardDrop();	
+		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1) ;
+		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
 	}
 
 	private void OnEnable()
@@ -87,6 +87,8 @@ public class Piece : MonoBehaviour
 		board.Set(this);
 		board.ClearLines();
 		board.SpawnPiece();
+		
+		Debug.Log("Lock");
 	}
 
 	private void HardDrop()
@@ -96,7 +98,8 @@ public class Piece : MonoBehaviour
 			continue;
 		}
 		
-		Lock();		
+		Debug.Log("HardDrop");
+		Lock();	
 	}
 
 	private bool Move(Vector2Int translation)
@@ -117,6 +120,8 @@ public class Piece : MonoBehaviour
 
 	private void Rotate(int direction)
 	{
+		board.Clear(this);
+		
 		int originalRotation = rotationIndex;
 		rotationIndex += Wrap(rotationIndex + direction, 0, 4);
 		
@@ -127,6 +132,7 @@ public class Piece : MonoBehaviour
 			rotationIndex = originalRotation;
 			ApplyRotationMatrix(-direction);
 		}
+		
 	}
 
 	private void ApplyRotationMatrix(int direction)

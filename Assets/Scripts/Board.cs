@@ -99,6 +99,7 @@ public class Board : MonoBehaviour
     private void GameOver()
     {
         tilemap.ClearAllTiles();
+        Debug.Log("GameOver");
     }
 
     public void Set(Piece piece)
