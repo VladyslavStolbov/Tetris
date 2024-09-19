@@ -39,7 +39,10 @@ public class Piece : MonoBehaviour
 	private void Awake()
 	{
 		tetrisInput = new TetrisInput();
-		
+
+		tetrisInput.Gameplay.MoveLeft.performed += context => Move(Vector2Int.right);
+		tetrisInput.Gameplay.MoveRight.performed += context => Move(Vector2Int.left);
+		tetrisInput.Gameplay.MoveDown.performed += context => Move(Vector2Int.down);
 		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1);
 		tetrisInput.Gameplay.RotateRight.performed += context => Rotate(1); 
 		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
@@ -110,6 +113,8 @@ public class Piece : MonoBehaviour
 
 	private bool Move(Vector2Int translation)
 	{
+		board.Clear(this);
+		
 		Vector3Int newPosition = position;
 		newPosition.x += translation.x;
 		newPosition.y += translation.y;
