@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class Piece : MonoBehaviour
 {
@@ -40,12 +41,64 @@ public class Piece : MonoBehaviour
 	{
 		tetrisInput = new TetrisInput();
 
-		tetrisInput.Gameplay.MoveLeft.performed += context => Move(Vector2Int.right);
-		tetrisInput.Gameplay.MoveRight.performed += context => Move(Vector2Int.left);
-		tetrisInput.Gameplay.MoveDown.performed += context => Move(Vector2Int.down);
+		ManageMovement();
 		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1);
 		tetrisInput.Gameplay.RotateRight.performed += context => Rotate(1); 
 		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
+	}
+
+	private void ManageMovement()
+	{
+		tetrisInput.Gameplay.MoveLeft.performed += context =>
+		{
+			if (context.interaction is HoldInteraction)
+			{
+				InvokeRepeating(nameof(MoveLeft),0f, 0.2f);
+			}
+			else
+			{
+				MoveLeft();
+			}
+		};
+		
+		tetrisInput.Gameplay.MoveLeft.canceled += context =>
+		{
+			CancelInvoke(nameof(MoveLeft));
+		};
+		
+		tetrisInput.Gameplay.MoveRight.performed += context =>
+		{
+			if (context.interaction is HoldInteraction)
+			{
+				InvokeRepeating(nameof(MoveRight),0f, 0.2f);
+			}
+			else
+			{
+				MoveRight();
+			}
+		};
+		
+		tetrisInput.Gameplay.MoveRight.canceled += context =>
+		{
+			CancelInvoke(nameof(MoveRight));
+		};
+		
+		tetrisInput.Gameplay.MoveDown.performed += context =>
+		{
+			if (context.interaction is HoldInteraction)
+			{
+				InvokeRepeating(nameof(MoveDown),0f, 0.2f);
+			}
+			else
+			{
+				MoveDown();
+			}
+		};
+
+		tetrisInput.Gameplay.MoveDown.canceled += context =>
+		{
+			CancelInvoke(nameof(MoveDown));
+		};
 	}
 
 	private void OnEnable()
@@ -129,6 +182,10 @@ public class Piece : MonoBehaviour
 		return valid;
 	}
 
+	private void MoveLeft() => Move(Vector2Int.right);
+	private void MoveRight() => Move(Vector2Int.left);
+	private void MoveDown() => Move(Vector2Int.down);
+	
 	private void Rotate(int direction)
 	{
 		board.Clear(this);

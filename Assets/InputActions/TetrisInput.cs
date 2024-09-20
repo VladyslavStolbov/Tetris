@@ -60,7 +60,7 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""id"": ""2153fb40-0453-4869-9f99-0838902cb6b6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold,Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -69,7 +69,7 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""id"": ""3b48c339-b743-4b56-85f9-b70849859ff6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold,Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -78,7 +78,7 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""id"": ""bbe9d6a3-7650-495b-b67f-8bf65f1a0af4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold,Press"",
                     ""initialStateCheck"": false
                 }
             ],
