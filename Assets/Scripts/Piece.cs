@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class Piece : MonoBehaviour
@@ -49,55 +51,28 @@ public class Piece : MonoBehaviour
 
 	private void ManageMovement()
 	{
-		tetrisInput.Gameplay.MoveLeft.performed += context =>
+		RegisterMovement(tetrisInput.Gameplay.MoveLeft, MoveLeft);
+		RegisterMovement(tetrisInput.Gameplay.MoveRight, MoveRight);
+		RegisterMovement(tetrisInput.Gameplay.MoveDown, MoveDown);
+	}
+
+	private void RegisterMovement(InputAction action, Action moveAction)
+	{
+		action.performed += context =>
 		{
 			if (context.interaction is HoldInteraction)
 			{
-				InvokeRepeating(nameof(MoveLeft),0f, 0.2f);
+				InvokeRepeating(moveAction.Method.Name,0f, 0.2f);
 			}
 			else
 			{
-				MoveLeft();
-			}
-		};
-		
-		tetrisInput.Gameplay.MoveLeft.canceled += context =>
-		{
-			CancelInvoke(nameof(MoveLeft));
-		};
-		
-		tetrisInput.Gameplay.MoveRight.performed += context =>
-		{
-			if (context.interaction is HoldInteraction)
-			{
-				InvokeRepeating(nameof(MoveRight),0f, 0.2f);
-			}
-			else
-			{
-				MoveRight();
-			}
-		};
-		
-		tetrisInput.Gameplay.MoveRight.canceled += context =>
-		{
-			CancelInvoke(nameof(MoveRight));
-		};
-		
-		tetrisInput.Gameplay.MoveDown.performed += context =>
-		{
-			if (context.interaction is HoldInteraction)
-			{
-				InvokeRepeating(nameof(MoveDown),0f, 0.2f);
-			}
-			else
-			{
-				MoveDown();
+				moveAction();
 			}
 		};
 
-		tetrisInput.Gameplay.MoveDown.canceled += context =>
+		action.canceled += context =>
 		{
-			CancelInvoke(nameof(MoveDown));
+			CancelInvoke(moveAction.Method.Name);
 		};
 	}
 
