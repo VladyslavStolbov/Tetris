@@ -620,8 +620,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 422120254}
+  - component: {fileID: 422120255}
   m_Layer: 5
-  m_Name: ScoreManager
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,6 +651,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &422120255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422120253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8231c6719781a8843ba977649d956174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1438447570}
+  topScoreText: {fileID: 838954758}
 --- !u!1 &439501134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1364,7 @@ GameObject:
   - component: {fileID: 1079867119}
   - component: {fileID: 1079867120}
   m_Layer: 0
-  m_Name: s
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

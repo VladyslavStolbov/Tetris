@@ -38,7 +38,7 @@ public class Board : MonoBehaviour
 
     private void Start()
     { 
-        activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
+    activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
         
         FillBag();
         SetNextPiece();
