@@ -146,11 +146,13 @@ public class Board : MonoBehaviour
     {
         RectInt bounds = Bounds;
         int row = bounds.yMin;
+        int linesAmount = 0;
 
         while (row < bounds.yMax)
         {
             if (IsLineFull(row))
             {
+                linesAmount += 1;
                 LineClear(row);
             }
             else
