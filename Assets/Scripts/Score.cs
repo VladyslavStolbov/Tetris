@@ -14,9 +14,26 @@ public class Score : MonoBehaviour
 	private int threeLinePoints = 300;
 	private int fourLinePoints = 1200;
 	
-	public void UpdateScore()
+	public void UpdateScore(int lines)
 	{
-		_score += oneLinePoints;
+		switch (lines)
+		{
+			case 1:
+				_score += oneLinePoints;
+				break;
+			case 2:
+				_score += twoLinePoints;
+				break;
+			case 3:
+				_score += threeLinePoints;
+				break;
+			case 4:
+				_score += fourLinePoints;
+				break;
+			default:
+				break;
+		}
+		
 		scoreText.text = $"{_score:000000}";
 	}
 }

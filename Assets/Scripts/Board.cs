@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,8 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
+    public UnityEvent<int> clearLines;
+    
     private List<int> _bag = new (); 
 
 
@@ -160,6 +163,8 @@ public class Board : MonoBehaviour
                 row++;
             }
         }
+        
+        clearLines.Invoke(linesAmount);
     }
 
     private bool IsLineFull(int row)
