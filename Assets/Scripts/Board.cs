@@ -23,7 +23,8 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
-    public UnityEvent<int> clearLines;
+    public UnityEvent<int> OnClearLines;
+    public UnityEvent OnGameOver;
     
     private List<int> _bag = new (); 
 
@@ -92,16 +93,10 @@ public class Board : MonoBehaviour
         }
         else
         {
-            GameOver();
+            OnGameOver.Invoke();
         }
 
         SetNextPiece();
-    }
-
-    private void GameOver()
-    {
-        tilemap.ClearAllTiles();
-        Debug.Log("GameOver");
     }
 
     public void Set(Piece piece)
@@ -164,7 +159,7 @@ public class Board : MonoBehaviour
             }
         }
         
-        clearLines.Invoke(linesAmount);
+        OnClearLines.Invoke(linesAmount);
     }
 
     private bool IsLineFull(int row)

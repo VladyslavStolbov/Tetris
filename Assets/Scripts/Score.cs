@@ -33,7 +33,22 @@ public class Score : MonoBehaviour
 			default:
 				break;
 		}
-		
+		scoreText.text = $"{_score:000000}";
+	}
+	
+	public void UpdateTopScore()
+	{
+		if (_topScore < _score)
+		{
+			_topScore = _score;
+			topScoreText.text = $"{_topScore:000000}";
+		}
+		ClearScore();
+	}
+
+	private void ClearScore()
+	{
+		_score = 0;
 		scoreText.text = $"{_score:000000}";
 	}
 }
