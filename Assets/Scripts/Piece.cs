@@ -12,11 +12,11 @@ public class Piece : MonoBehaviour
 	public int rotationIndex { get; private set; }
 	public TetrisInput tetrisInput { get; private set; }
 
-	public float stepDelay = 1f;
-	public float lockDelay = 0.5f;
+	private float _stepDelay = 1f;
+	private float _lockDelay = 0.3f;
 	
-	private float stepTime;
-	private float lockTime;
+	private float _stepTime;
+	private float _lockTime;
 	
 	public void Initialize(Board board, Vector3Int position, TetrominoData data)
 	{
@@ -25,8 +25,8 @@ public class Piece : MonoBehaviour
 		this.data = data;
 		
 		rotationIndex = 0;
-		stepTime = Time.time + stepDelay;
-		lockTime = 0f;
+		_stepTime = Time.time + _stepDelay;
+		_lockTime = 0f;
 
 		if (cells == null)
 		{
@@ -62,7 +62,7 @@ public class Piece : MonoBehaviour
 		{
 			if (context.interaction is HoldInteraction)
 			{
-				InvokeRepeating(moveAction.Method.Name,0f, 0.2f);
+				InvokeRepeating(moveAction.Method.Name,0f, 0.05f);
 			}
 			else
 			{
@@ -90,9 +90,9 @@ public class Piece : MonoBehaviour
 	{
 		board.Clear(this);
 
-		lockTime += Time.deltaTime;
+		_lockTime += Time.deltaTime;
 		
-		if (Time.time >= stepTime)
+		if (Time.time >= _stepTime)
 		{
 			Step();
 		}
@@ -102,11 +102,11 @@ public class Piece : MonoBehaviour
 
 	private void Step()
 	{
-		stepTime = Time.time + stepDelay;
+		_stepTime = Time.time + _stepDelay;
 
 		Move(Vector2Int.down);
 
-		if (lockTime >= lockDelay)
+		if (_lockTime >= _lockDelay)
 		{
 			Lock();
 		}
@@ -152,7 +152,7 @@ public class Piece : MonoBehaviour
 		if (valid)
 		{
 			position = newPosition;
-			lockTime = 0f;
+			_lockTime = 0f;
 		}
 		return valid;
 	}

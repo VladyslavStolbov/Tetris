@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -9,10 +10,10 @@ public class Board : MonoBehaviour
     public Tilemap tilemap { get; private set; }
     public Piece activePiece { get; private set; }
     public Piece nextPiece { get; private set; }
-
+    
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition = new(0, 8, 0);
-    public Vector3Int previewPosition = new(10, 5, 0);
+    public Vector3Int previewPosition = new(10, 6, 0);
     public Vector2Int boardSize = new(10, 20);
     public RectInt Bounds
     {
@@ -22,6 +23,9 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
+    public UnityEvent<int> OnClearLines;
+    public UnityEvent OnGameOver;
+    
     private List<int> _bag = new (); 
 
 
@@ -89,16 +93,10 @@ public class Board : MonoBehaviour
         }
         else
         {
-            GameOver();
+            OnGameOver.Invoke();
         }
 
         SetNextPiece();
-    }
-
-    private void GameOver()
-    {
-        tilemap.ClearAllTiles();
-        Debug.Log("GameOver");
     }
 
     public void Set(Piece piece)
@@ -146,11 +144,13 @@ public class Board : MonoBehaviour
     {
         RectInt bounds = Bounds;
         int row = bounds.yMin;
+        int linesAmount = 0;
 
         while (row < bounds.yMax)
         {
             if (IsLineFull(row))
             {
+                linesAmount += 1;
                 LineClear(row);
             }
             else
@@ -158,6 +158,8 @@ public class Board : MonoBehaviour
                 row++;
             }
         }
+        
+        OnClearLines.Invoke(linesAmount);
     }
 
     private bool IsLineFull(int row)
