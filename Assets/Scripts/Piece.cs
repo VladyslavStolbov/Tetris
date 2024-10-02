@@ -62,7 +62,7 @@ public class Piece : MonoBehaviour
 		{
 			if (context.interaction is HoldInteraction)
 			{
-				InvokeRepeating(moveAction.Method.Name,0f, 0.2f);
+				InvokeRepeating(moveAction.Method.Name,0f, 0.05f);
 			}
 			else
 			{
