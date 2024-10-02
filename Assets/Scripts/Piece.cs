@@ -12,8 +12,8 @@ public class Piece : MonoBehaviour
 	public int rotationIndex { get; private set; }
 	public TetrisInput tetrisInput { get; private set; }
 
-	public float stepDelay = 1f;
-	public float lockDelay = 0.5f;
+	private float _stepDelay = 1f;
+	private float _lockDelay = 0.3f;
 	
 	private float _stepTime;
 	private float _lockTime;
@@ -25,7 +25,7 @@ public class Piece : MonoBehaviour
 		this.data = data;
 		
 		rotationIndex = 0;
-		_stepTime = Time.time + stepDelay;
+		_stepTime = Time.time + _stepDelay;
 		_lockTime = 0f;
 
 		if (cells == null)
@@ -102,11 +102,11 @@ public class Piece : MonoBehaviour
 
 	private void Step()
 	{
-		_stepTime = Time.time + stepDelay;
+		_stepTime = Time.time + _stepDelay;
 
 		Move(Vector2Int.down);
 
-		if (_lockTime >= lockDelay)
+		if (_lockTime >= _lockDelay)
 		{
 			Lock();
 		}

@@ -699,14 +699,10 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 8, z: 0}
   previewPosition: {x: 5, y: 5, z: 0}
   boardSize: {x: 10, y: 20}
-  gameData: {fileID: 0}
   OnClearLines:
     m_PersistentCalls:
       m_Calls: []
   OnGameOver:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLevelUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!156049354 &255358546
@@ -1471,7 +1467,6 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 8, z: 0}
   previewPosition: {x: 10, y: 6, z: 0}
   boardSize: {x: 10, y: 20}
-  gameData: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
   OnClearLines:
     m_PersistentCalls:
       m_Calls:
@@ -1550,9 +1545,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnLevelUp:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1079867119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,8 +1557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c20b906f98233c49a21cc50b3b23cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDelay: 1
-  lockDelay: 0.5
 --- !u!114 &1079867120
 MonoBehaviour:
   m_ObjectHideFlags: 0
