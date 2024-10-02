@@ -12,7 +12,7 @@ public class Piece : MonoBehaviour
 	public int rotationIndex { get; private set; }
 	public TetrisInput tetrisInput { get; private set; }
 
-	private float _stepDelay = 1f;
+	private float _stepDelay;
 	private float _lockDelay = 0.3f;
 	
 	private float _stepTime;
@@ -23,7 +23,8 @@ public class Piece : MonoBehaviour
 		this.board = board;
 		this.position = position;
 		this.data = data;
-		
+
+		SetStepDelay(board.gameData.level);
 		rotationIndex = 0;
 		_stepTime = Time.time + _stepDelay;
 		_lockTime = 0f;
@@ -38,6 +39,7 @@ public class Piece : MonoBehaviour
 			cells[i] = (Vector3Int)data.cells[i];
 		}
 	}
+
 
 	private void Awake()
 	{
@@ -100,6 +102,27 @@ public class Piece : MonoBehaviour
 		board.Set(this);
 	}
 
+	public void ResetStepDelay()
+	{ 
+		_stepDelay = 0.8f;
+	}
+	
+	private void SetStepDelay(int level)
+	{
+		switch (level)
+		{
+			case < 10:
+				_stepDelay = 0.8f - (level * 0.08f);
+				break;
+			case >= 10 and <= 18:
+				_stepDelay = 0.1f;
+				break;
+			default:
+				_stepDelay = 0.067f;
+				break;
+		}
+	}
+	
 	private void Step()
 	{
 		_stepTime = Time.time + _stepDelay;
