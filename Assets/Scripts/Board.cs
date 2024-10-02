@@ -10,12 +10,12 @@ public class Board : MonoBehaviour
     public Tilemap tilemap { get; private set; }
     public Piece activePiece { get; private set; }
     public Piece nextPiece { get; private set; }
-    public int level { get; private set; }
     
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition = new(0, 8, 0);
     public Vector3Int previewPosition = new(10, 6, 0);
     public Vector2Int boardSize = new(10, 20);
+    public GameData gameData;
     public RectInt Bounds
     {
         get
@@ -44,7 +44,7 @@ public class Board : MonoBehaviour
 
     private void Start()
     { 
-    activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
+        activePiece = GetComponentInChildren<Piece>(); // Need to be there to fix issue with finding first reference
         
         FillBag();
         SetNextPiece();
@@ -163,8 +163,6 @@ public class Board : MonoBehaviour
         
         OnClearLines.Invoke(linesAmount);
     }
-
-    public void LevelUp() => level += 1; 
 
     private bool IsLineFull(int row)
     {

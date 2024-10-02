@@ -14,25 +14,24 @@ public class UI : MonoBehaviour
 	[SerializeField] private Text levelText;
 	
 	[Header("Lines")] 
-	[SerializeField] private Text linesText;
-	
-	public void UpdateScoreText()
+	[SerializeField] private Text linesClearedText;
+
+	private void OnEnable()
+	{
+		UpdateUI();
+	}
+
+	public void UpdateUI()
 	{
 		scoreText.text = $"{gameData.score:000000}";
-	}
-	
-	public void UpdateTopScoreText()
-	{
 		topScoreText.text = $"{gameData.topScore:000000}";
-	}
+		levelText.text = $"{gameData.level:00}"; 
+		linesClearedText.text = $"{gameData.linesCleared:00}";
+	} 
 
 	public void ClearScoreText()
 	{
 		scoreText.text = $"{gameData.score:000000}";
 	}
 
-	public void AddLevel()
-	{
-		levelText.text = $"{gameData.level:00}"; 
-	}
 }

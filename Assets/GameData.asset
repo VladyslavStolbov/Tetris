@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   score: 0
-  topScore: 1240
+  topScore: 3920
   oneLinePoints: 40
   twoLinePoints: 100
   threeLinePoints: 300
   fourLinePoints: 1200
   level: 0
   linesCleared: 0
+  linesForLevelUp: 10

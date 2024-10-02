@@ -12,10 +12,26 @@ public class GameData : ScriptableObject
 	public int fourLinePoints;
 	public int level;
 	public int linesCleared;
+	public int linesForLevelUp;
 
 	private void OnEnable()
 	{
-		ClearScore();	
+		ResetData();
+	}
+
+	public void ResetData()
+	{
+		ClearScore();
+		linesCleared = 0;
+		level = 0;
+	}
+
+	public void UpdateData(int lines)
+	{
+		UpdateScore(lines);	
+		UpdateTopScore();
+		UpdateLinesCleared(lines);
+		UpdateLevel();
 	}
 
 	public void UpdateScore(int lines)
@@ -23,16 +39,16 @@ public class GameData : ScriptableObject
 		switch (lines)
 		{
 			case 1:
-				score += oneLinePoints;
+				score += (oneLinePoints * (level != 0 ? level : 1));
 				break;
 			case 2:
-				score += twoLinePoints;
+				score += (twoLinePoints * (level != 0 ? level : 1));
 				break;
 			case 3:
-				score += threeLinePoints;
+				score += (threeLinePoints * (level != 0 ? level : 1));
 				break;
 			case 4:
-				score += fourLinePoints;
+				score += (fourLinePoints * (level != 0 ? level : 1));
 				break;
 			default:
 				break;
@@ -46,6 +62,13 @@ public class GameData : ScriptableObject
 			topScore = score;
 		}	
 	}
-
+	
 	public void ClearScore() => score = 0;
+
+	public void UpdateLinesCleared(int lines) => linesCleared += lines;
+	
+	private void UpdateLevel()
+	{
+		level = linesCleared / linesForLevelUp;
+	}
 } 
