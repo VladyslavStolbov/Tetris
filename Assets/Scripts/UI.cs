@@ -16,6 +16,15 @@ public class UI : MonoBehaviour
 	[Header("Lines")] 
 	[SerializeField] private Text linesClearedText;
 
+	[Header("Statistics")] 
+	[SerializeField] private Text PurpleTText;
+	[SerializeField] private Text BlueJText;
+	[SerializeField] private Text RedZText;
+	[SerializeField] private Text YellowOText;
+	[SerializeField] private Text GreenSText;
+	[SerializeField] private Text OrangeLText;
+	[SerializeField] private Text CyanIText;
+	
 	private void OnEnable()
 	{
 		UpdateUI();
@@ -34,4 +43,42 @@ public class UI : MonoBehaviour
 		scoreText.text = $"{gameData.score:000000}";
 	}
 
+	public void UpdateStatisticsUI(Tetromino tetromino)
+	{
+		switch (tetromino)
+		{
+			case Tetromino.I:
+				CyanIText.text = $"{gameData.Statistics[Tetromino.I]:000}";	
+				break;
+			case Tetromino.O:
+				YellowOText.text = $"{gameData.Statistics[Tetromino.O]:000}";	
+				break;
+			case Tetromino.T:
+				PurpleTText.text = $"{gameData.Statistics[Tetromino.T]:000}";	
+				break;
+			case Tetromino.J:
+				BlueJText.text = $"{gameData.Statistics[Tetromino.J]:000}";	
+				break;
+			case Tetromino.L:
+				OrangeLText.text = $"{gameData.Statistics[Tetromino.L]:000}";	
+				break;
+			case Tetromino.S:
+				GreenSText.text = $"{gameData.Statistics[Tetromino.S]:000}";	
+				break;
+			case Tetromino.Z:
+				RedZText.text = $"{gameData.Statistics[Tetromino.Z]:000}";	
+				break;
+		}
+	}
+
+	public void ResetStatisticsUI()
+	{
+		CyanIText.text = "000"; 
+		YellowOText.text = "000"; 
+		PurpleTText.text = "000"; 
+		BlueJText.text = "000"; 
+		OrangeLText.text = "000"; 
+		GreenSText.text = "000"; 
+		RedZText.text = "000"; 
+	}
 }

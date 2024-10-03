@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameData", menuName = "GameData")]
-public class GameData : ScriptableObject
+[CreateAssetMenu(fileName = "GameData", menuName = "GameData")] public class GameData : ScriptableObject
 {
 	public int score;
 	public int topScore;
@@ -14,7 +14,17 @@ public class GameData : ScriptableObject
 	public int linesCleared;
 	public int linesForLevelUp;
 
-	private void OnEnable()
+	public Dictionary<Tetromino, int> Statistics = new() {
+		{ Tetromino.T , 0},	
+		{ Tetromino.J , 0},	
+		{ Tetromino.Z , 0},	
+		{ Tetromino.O , 0},	
+		{ Tetromino.S , 0},	
+		{ Tetromino.L , 0},	
+		{ Tetromino.I , 0},	
+	};
+
+private void OnEnable()
 	{
 		ResetData();
 	}
@@ -24,6 +34,7 @@ public class GameData : ScriptableObject
 		ClearScore();
 		linesCleared = 0;
 		level = 0;
+		ResetStatistics();
 	}
 
 	public void UpdateData(int lines)
@@ -39,7 +50,7 @@ public class GameData : ScriptableObject
 		switch (lines)
 		{
 			case 1:
-				score += (oneLinePoints * (level != 0 ? level : 1));
+				score += (oneLinePoints * (level != 0 ? level : 1)); // multiply on level, if level = 0 - multiply by 1
 				break;
 			case 2:
 				score += (twoLinePoints * (level != 0 ? level : 1));
@@ -49,8 +60,6 @@ public class GameData : ScriptableObject
 				break;
 			case 4:
 				score += (fourLinePoints * (level != 0 ? level : 1));
-				break;
-			default:
 				break;
 		}
 	}
@@ -70,5 +79,24 @@ public class GameData : ScriptableObject
 	private void UpdateLevel()
 	{
 		level = linesCleared / linesForLevelUp;
+	}
+
+	public void AddToStatistics(Tetromino tetromino)
+	{
+		Statistics[tetromino] += 1;
+	}
+
+	private void ResetStatistics()
+	{
+		Statistics = new Dictionary<Tetromino, int>
+		{
+			{ Tetromino.T , 0},	
+			{ Tetromino.J , 0},	
+			{ Tetromino.Z , 0},	
+			{ Tetromino.O , 0},	
+			{ Tetromino.S , 0},	
+			{ Tetromino.L , 0},	
+			{ Tetromino.I , 0},	
+		};
 	}
 } 

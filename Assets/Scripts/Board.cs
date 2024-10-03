@@ -26,6 +26,7 @@ public class Board : MonoBehaviour
     }
     public UnityEvent<int> OnClearLines;
     public UnityEvent OnGameOver;
+    public UnityEvent<Tetromino> OnPieceSpawn;
     
     private List<int> _bag = new (); 
 
@@ -91,6 +92,7 @@ public class Board : MonoBehaviour
         if (IsValidPosition(activePiece, spawnPosition))
         {
             Set(activePiece);
+            OnPieceSpawn.Invoke(activePiece.data.tetromino); 
         }
         else
         {

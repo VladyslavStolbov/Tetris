@@ -1688,6 +1688,13 @@ MonoBehaviour:
   topScoreText: {fileID: 838954758}
   levelText: {fileID: 1669558717}
   linesClearedText: {fileID: 251630414}
+  PurpleTText: {fileID: 741383045}
+  BlueJText: {fileID: 565994899}
+  RedZText: {fileID: 655717331}
+  YellowOText: {fileID: 259233080}
+  GreenSText: {fileID: 1432034128}
+  OrangeLText: {fileID: 940037393}
+  CyanIText: {fileID: 294070562}
 --- !u!1 &940037391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,6 +1973,45 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Piece, Assembly-CSharp
         m_MethodName: ResetStepDelay
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ResetStatisticsUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPieceSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
+        m_TargetAssemblyTypeName: GameData, Assembly-CSharp
+        m_MethodName: AddToStatistics
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: UpdateStatisticsUI
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
