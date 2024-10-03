@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,25 @@ public class UI : MonoBehaviour
 	[SerializeField] private Text GreenSText;
 	[SerializeField] private Text OrangeLText;
 	[SerializeField] private Text CyanIText;
+
+	private Dictionary<Tetromino, Text> _tetrominoTextMapping;
 	
+	private void Awake()
+	{
+		{
+			_tetrominoTextMapping = new Dictionary<Tetromino, Text>
+			{
+				{ Tetromino.I, CyanIText },
+				{ Tetromino.O, YellowOText },
+				{ Tetromino.T, PurpleTText },
+				{ Tetromino.J, BlueJText },
+				{ Tetromino.L, OrangeLText },
+				{ Tetromino.S, GreenSText },
+				{ Tetromino.Z, RedZText }
+			};
+		}			
+	}
+		
 	private void OnEnable()
 	{
 		UpdateUI();
@@ -36,49 +55,30 @@ public class UI : MonoBehaviour
 		topScoreText.text = $"{gameData.topScore:000000}";
 		levelText.text = $"{gameData.level:00}"; 
 		linesClearedText.text = $"{gameData.linesCleared:00}";
+		UpdateStatisticsUI();
 	} 
-
-	public void ClearScoreText()
-	{
-		scoreText.text = $"{gameData.score:000000}";
-	}
 
 	public void UpdateStatisticsUI(Tetromino tetromino)
 	{
-		switch (tetromino)
+		if (_tetrominoTextMapping.TryGetValue(tetromino, out Text text))
 		{
-			case Tetromino.I:
-				CyanIText.text = $"{gameData.Statistics[Tetromino.I]:000}";	
-				break;
-			case Tetromino.O:
-				YellowOText.text = $"{gameData.Statistics[Tetromino.O]:000}";	
-				break;
-			case Tetromino.T:
-				PurpleTText.text = $"{gameData.Statistics[Tetromino.T]:000}";	
-				break;
-			case Tetromino.J:
-				BlueJText.text = $"{gameData.Statistics[Tetromino.J]:000}";	
-				break;
-			case Tetromino.L:
-				OrangeLText.text = $"{gameData.Statistics[Tetromino.L]:000}";	
-				break;
-			case Tetromino.S:
-				GreenSText.text = $"{gameData.Statistics[Tetromino.S]:000}";	
-				break;
-			case Tetromino.Z:
-				RedZText.text = $"{gameData.Statistics[Tetromino.Z]:000}";	
-				break;
+			text.text = text.text = $"{gameData.Statistics[tetromino]:000}";
 		}
 	}
 
+	public void UpdateStatisticsUI()
+	{
+		foreach (var entry in _tetrominoTextMapping)
+		{
+			entry.Value.text = $"{gameData.Statistics[entry.Key]:000}";
+		}
+	}
+	
 	public void ResetStatisticsUI()
 	{
-		CyanIText.text = "000"; 
-		YellowOText.text = "000"; 
-		PurpleTText.text = "000"; 
-		BlueJText.text = "000"; 
-		OrangeLText.text = "000"; 
-		GreenSText.text = "000"; 
-		RedZText.text = "000"; 
+		foreach (var entry in _tetrominoTextMapping)
+		{
+			entry.Value.text = "000";
+		}
 	}
 }

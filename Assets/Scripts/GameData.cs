@@ -14,17 +14,14 @@ using UnityEngine;
 	public int linesCleared;
 	public int linesForLevelUp;
 
-	public Dictionary<Tetromino, int> Statistics = new() {
-		{ Tetromino.T , 0},	
-		{ Tetromino.J , 0},	
-		{ Tetromino.Z , 0},	
-		{ Tetromino.O , 0},	
-		{ Tetromino.S , 0},	
-		{ Tetromino.L , 0},	
-		{ Tetromino.I , 0},	
-	};
+	public Dictionary<Tetromino, int> Statistics; 
 
-private void OnEnable()
+	private void Awake()
+	{
+		ResetStatistics();
+	}
+
+	private void OnEnable()
 	{
 		ResetData();
 	}
