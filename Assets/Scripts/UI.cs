@@ -58,27 +58,11 @@ public class UI : MonoBehaviour
 		UpdateStatisticsUI();
 	} 
 
-	public void UpdateStatisticsUI(Tetromino tetromino)
-	{
-		if (_tetrominoTextMapping.TryGetValue(tetromino, out Text text))
-		{
-			text.text = text.text = $"{gameData.Statistics[tetromino]:000}";
-		}
-	}
-
-	public void UpdateStatisticsUI()
+	private void UpdateStatisticsUI()
 	{
 		foreach (var entry in _tetrominoTextMapping)
 		{
 			entry.Value.text = $"{gameData.Statistics[entry.Key]:000}";
-		}
-	}
-	
-	public void ResetStatisticsUI()
-	{
-		foreach (var entry in _tetrominoTextMapping)
-		{
-			entry.Value.text = "000";
 		}
 	}
 }

@@ -28,7 +28,7 @@ using UnityEngine;
 
 	public void ResetData()
 	{
-		ClearScore();
+		score = 0;	
 		linesCleared = 0;
 		level = 0;
 		ResetStatistics();
@@ -42,7 +42,9 @@ using UnityEngine;
 		UpdateLevel();
 	}
 
-	public void UpdateScore(int lines)
+	public void AddToStatistics(Tetromino tetromino) => Statistics[tetromino] += 1;
+	
+	private void UpdateScore(int lines)
 	{
 		switch (lines)
 		{
@@ -61,7 +63,7 @@ using UnityEngine;
 		}
 	}
 
-	public void UpdateTopScore()
+	private void UpdateTopScore()
 	{
 		if (topScore < score)
 		{
@@ -69,19 +71,9 @@ using UnityEngine;
 		}	
 	}
 	
-	public void ClearScore() => score = 0;
-
-	public void UpdateLinesCleared(int lines) => linesCleared += lines;
+	private void UpdateLinesCleared(int lines) => linesCleared += lines;
 	
-	private void UpdateLevel()
-	{
-		level = linesCleared / linesForLevelUp;
-	}
-
-	public void AddToStatistics(Tetromino tetromino)
-	{
-		Statistics[tetromino] += 1;
-	}
+	private void UpdateLevel() => level = linesCleared / linesForLevelUp;
 
 	private void ResetStatistics()
 	{
