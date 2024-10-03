@@ -230,7 +230,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1291166839}
-  - {fileID: 872285908}
   m_Father: {fileID: 923917401}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172314991
@@ -648,7 +647,7 @@ GameObject:
   - component: {fileID: 259233081}
   - component: {fileID: 259233080}
   m_Layer: 5
-  m_Name: Red
+  m_Name: Yellow_O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,7 +726,7 @@ GameObject:
   - component: {fileID: 294070563}
   - component: {fileID: 294070562}
   m_Layer: 5
-  m_Name: Purple
+  m_Name: Cyan_I
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +938,7 @@ RectTransform:
   m_GameObject: {fileID: 479299959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.25596407}
-  m_LocalScale: {x: 2.8, y: 2.8, z: 2.8}
+  m_LocalScale: {x: 2.7, y: 2.7, z: 2.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 527687747}
@@ -1176,7 +1175,7 @@ GameObject:
   - component: {fileID: 565994900}
   - component: {fileID: 565994899}
   m_Layer: 5
-  m_Name: Pink
+  m_Name: Blue_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,7 +1338,7 @@ GameObject:
   - component: {fileID: 655717332}
   - component: {fileID: 655717331}
   m_Layer: 5
-  m_Name: Cyan
+  m_Name: Red_Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,7 +1417,7 @@ GameObject:
   - component: {fileID: 741383046}
   - component: {fileID: 741383045}
   m_Layer: 5
-  m_Name: Blue
+  m_Name: Purple_T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,156 +1563,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838954756}
   m_CullTransparentMesh: 1
---- !u!1 &872285907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 872285908}
-  - component: {fileID: 872285910}
-  - component: {fileID: 872285909}
-  m_Layer: 0
-  m_Name: BlocksTilemap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &872285908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872285907}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.333313, y: -0.3333435, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 141272530}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!483693784 &872285909
-TilemapRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872285907}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1528147995
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-  m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
-  m_MaxChunkCount: 16
-  m_MaxFrameAge: 16
-  m_SortOrder: 0
-  m_Mode: 0
-  m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
---- !u!1839735485 &872285910
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 872285907}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileMatrixArray:
-  - m_RefCount: 0
-    m_Data:
-      e00: 1.07e-42
-      e01: 0
-      e02: 1e-45
-      e03: 1.3224334e-38
-      e10: 0
-      e11: 0
-      e12: 0
-      e13: 8.3e-43
-      e20: 7.66339e+27
-      e21: 1.3224334e-38
-      e22: -0.00023650634
-      e23: -9.835729e-29
-      e30: 4.5912e-41
-      e31: 8.3e-43
-      e32: 8.3e-43
-      e33: 8.3e-43
-  m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: -9.835705e-29, g: -9.835705e-29, b: -9.835705e-29, a: -9.835705e-29}
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -15, y: -3, z: 0}
-  m_Size: {x: 15, y: 7, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
 --- !u!1 &923917397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1700,7 @@ GameObject:
   - component: {fileID: 940037394}
   - component: {fileID: 940037393}
   m_Layer: 5
-  m_Name: Green
+  m_Name: Orange_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9327,11 +9176,11 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {r: -1.9317347e-28, g: -1.9317347e-28, b: -1.9317347e-28, a: -1.9317347e-28}
   - m_RefCount: 0
-    m_Data: {r: -4.9661452e-29, g: -4.9661452e-29, b: -4.9661452e-29, a: -4.9661452e-29}
+    m_Data: {r: -1.40126965e-27, g: -1.40126965e-27, b: -1.40126965e-27, a: -1.40126965e-27}
   - m_RefCount: 0
-    m_Data: {r: -1.9352168e-28, g: -1.9352168e-28, b: -1.9352168e-28, a: -1.9352168e-28}
+    m_Data: {r: -4.9655096e-29, g: -4.9655096e-29, b: -4.9655096e-29, a: -4.9655096e-29}
   - m_RefCount: 0
-    m_Data: {r: -1.9354132e-28, g: -1.9354132e-28, b: -1.9354132e-28, a: -1.9354132e-28}
+    m_Data: {r: -4.9634392e-29, g: -4.9634392e-29, b: -4.9634392e-29, a: -4.9634392e-29}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9368,7 +9217,7 @@ GameObject:
   - component: {fileID: 1432034129}
   - component: {fileID: 1432034128}
   m_Layer: 5
-  m_Name: Yellow
+  m_Name: Green_S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
