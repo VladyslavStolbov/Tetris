@@ -8,7 +8,8 @@ public enum SoundType
 	GameOver,
 	LineClear,
 	Rotation,
-	TetrisClear
+	TetrisClear,
+	Move
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
