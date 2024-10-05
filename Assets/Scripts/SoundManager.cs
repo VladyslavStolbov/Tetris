@@ -1,58 +1,44 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 
-public enum SoundType
+[CreateAssetMenu(menuName = "Sound Manager", fileName = "Sound Manager")]
+public class SoundManager : ScriptableObject
 {
-	Click,
-	Drop,
-	GameOver,
-	LineClear,
-	Rotation,
-	TetrisClear,
-	Move
+    private static SoundManager _instance;
+
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = Resources.Load<SoundManager>("Sound Manager");
+            }
+
+            return _instance;
+        }
+    }
+    
+    public AudioSource soundObject;
+
+    private float _volumeChangeMultiplier = 0.15f;
+    private float _pitchChangeMultiplier = 0.1f;
+
+    public void PlaySound(AudioClip clip, Vector3 soundPos, float volume)
+    {
+        float randVolume = UnityEngine.Random.Range(volume - _volumeChangeMultiplier, volume + _volumeChangeMultiplier);
+        float randPitch = UnityEngine.Random.Range(1 - _pitchChangeMultiplier, 1 + _pitchChangeMultiplier);
+
+        AudioSource a = Instantiate(Instance.soundObject, soundPos, quaternion.identity);
+
+        a.clip = clip;
+        a.volume = randVolume;
+        a.pitch = randPitch;
+        a.Play();
+    }
 }
 
-[RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
-public class SoundManager : MonoBehaviour
-{
-	[SerializeField] private SoundList[] soundList;
-	private static SoundManager _instance;
-	private AudioSource _audioSource;
 
-	private void Awake()
-	{
-		_instance = this;
-	}
-
-	private void Start()
-	{
-		_audioSource = GetComponent<AudioSource>();
-	}
-
-	public static void PlaySound(SoundType sound, float volume = 1)
-	{
-		AudioClip[] clips = _instance.soundList[(int)sound].Sounds;
-		AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-		_instance._audioSource.PlayOneShot(randomClip, volume);
-	}
-	
-#if UNITY_EDITOR
-	private void OnEnable()
-	{
-		string[] names = Enum.GetNames(typeof(SoundType));
-		Array.Resize(ref soundList, names.Length);
-		for (int i = 0; i < soundList.Length; i++)
-		{
-			soundList[i].name = names[i];
-		}
-	}
-#endif
-}
-
-[Serializable]
-public struct SoundList
-{
-	public AudioClip[] Sounds { get => sounds; }
-	[HideInInspector] public string name;
-	[SerializeField] private AudioClip[] sounds;
-}
