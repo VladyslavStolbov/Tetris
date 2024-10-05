@@ -1,44 +1,25 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
 [CreateAssetMenu(menuName = "Sound Manager", fileName = "Sound Manager")]
 public class SoundManager : ScriptableObject
 {
-    private static SoundManager _instance;
+    public AudioSource audioSource;
 
-    public static SoundManager Instance
-    {
-        get
-        {
-            if (!_instance)
-            {
-                _instance = Resources.Load<SoundManager>("Sound Manager");
-            }
-
-            return _instance;
-        }
-    }
-    
-    public AudioSource soundObject;
+    [Header("Sounds")] 
+    public AudioClip rotationSound;
+    public AudioClip dropSound;
+    public AudioClip gameOverSound;
 
     private float _volumeChangeMultiplier = 0.15f;
     private float _pitchChangeMultiplier = 0.1f;
 
-    public void PlaySound(AudioClip clip, Vector3 soundPos, float volume)
+    public void PlaySound(AudioClip clip, float volume = 1f, Vector3 soundPos = default)
     {
         float randVolume = UnityEngine.Random.Range(volume - _volumeChangeMultiplier, volume + _volumeChangeMultiplier);
         float randPitch = UnityEngine.Random.Range(1 - _pitchChangeMultiplier, 1 + _pitchChangeMultiplier);
 
-        AudioSource a = Instantiate(Instance.soundObject, soundPos, quaternion.identity);
-
-        a.clip = clip;
-        a.volume = randVolume;
-        a.pitch = randPitch;
-        a.Play();
+        audioSource.volume = randVolume;
+        audioSource.pitch = randPitch;
+        audioSource.PlayOneShot(clip);
     }
 }
-
-

@@ -198,7 +198,7 @@ public class Piece : MonoBehaviour
 			rotationIndex = originalRotation;
 			ApplyRotationMatrix(-direction);
 		}
-		
+
 	}
 
 	private void ApplyRotationMatrix(int direction)
