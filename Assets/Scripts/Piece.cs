@@ -70,6 +70,7 @@ public class Piece : MonoBehaviour
 			{
 				moveAction(); 
 			}
+			AudioManager.Instance.PlaySfx("Move", volume: 0.3f);
 		};
 
 		action.canceled += context =>
@@ -178,7 +179,6 @@ public class Piece : MonoBehaviour
 		{
 			position = newPosition;
 			_lockTime = 0f;
-			AudioManager.Instance.PlaySfx("Move", volume: 0.3f);
 		}
 		return valid;
 	}
