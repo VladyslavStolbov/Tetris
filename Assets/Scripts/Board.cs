@@ -97,6 +97,7 @@ public class Board : MonoBehaviour
         else
         {
             OnGameOver.Invoke();
+            AudioManager.Instance.PlaySfx("GameOver");
         }
 
         SetNextPiece();

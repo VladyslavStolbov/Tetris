@@ -160,6 +160,8 @@ public class Piece : MonoBehaviour
 		
 		Debug.Log("HardDrop");
 		Lock();
+
+		AudioManager.Instance.PlaySfx("Drop");
 	}
 
 	private bool Move(Vector2Int translation)
@@ -198,7 +200,8 @@ public class Piece : MonoBehaviour
 			rotationIndex = originalRotation;
 			ApplyRotationMatrix(-direction);
 		}
-
+		
+		AudioManager.Instance.PlaySfx("Rotation");
 	}
 
 	private void ApplyRotationMatrix(int direction)
