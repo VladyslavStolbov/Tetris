@@ -155,14 +155,14 @@ public class Board : MonoBehaviour
             if (IsLineFull(row))
             {
                 linesAmount += 1;
-                LineClear(row);
+                ClearLine(row);
             }
             else
             {
                 row++;
             }
         }
-        
+
         OnClearLines.Invoke(linesAmount);
     }
 
@@ -183,7 +183,7 @@ public class Board : MonoBehaviour
         return true;
     }
 
-    private void LineClear(int row)
+    private void ClearLine(int row)
     {
         RectInt bounds = Bounds;
 
@@ -206,5 +206,6 @@ public class Board : MonoBehaviour
 
             row++;
         }
+        AudioManager.Instance.PlaySfx("ClearLine");
     }
 }
