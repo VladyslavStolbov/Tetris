@@ -25,7 +25,25 @@ public class AudioManager : MonoBehaviour
 
 	private void Start()
 	{
-		PlayMusic("Game", volume: 0.5f);	
+		SceneManager.sceneLoaded += OnSceneLoaded;
+		CheckCurrentScene();
+	}
+
+	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		CheckCurrentScene();
+	}
+
+	private void CheckCurrentScene()
+	{
+		if (SceneManager.GetActiveScene().name == "StartMenu")
+		{
+			PlayMusic("StartMenu", volume: 0.5f);
+		}
+		else if (SceneManager.GetActiveScene().name == "Game")
+		{
+			PlayMusic("Game", volume: 0.5f);	
+		}
 	}
 
 	public void PlayMusic(string clipName, float volume = 1f)
@@ -33,6 +51,7 @@ public class AudioManager : MonoBehaviour
 		Sound s = Array.Find(musicSounds, x => x.name == clipName);
 		AudioClip randClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
 
+		musicSource.Stop();
 		musicSource.clip = randClip;
 		musicSource.volume = volume;
 		musicSource.Play();
