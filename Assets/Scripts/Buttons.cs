@@ -13,6 +13,11 @@ public class Buttons : MonoBehaviour
 		
 	}
 
+	public void ExitButton()
+	{
+		SceneManager.LoadScene("StartMenu");
+	}
+
 	public void QuitButton()
 	{
 		Application.Quit();

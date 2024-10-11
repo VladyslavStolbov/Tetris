@@ -51,6 +51,30 @@ public class Piece : MonoBehaviour
 		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
 	}
 
+	private void OnEnable()
+	{
+		tetrisInput.Enable();	
+	}
+
+	private void OnDisable()
+	{
+		tetrisInput.Disable();
+	}
+
+	private void Update()
+	{
+		board.Clear(this);
+
+		_lockTime += Time.deltaTime;
+		
+		if (Time.time >= _stepTime)
+		{
+			Step();
+		}
+		
+		board.Set(this);
+	}
+	
 	private void ManageMovement()
 	{
 		RegisterMovement(tetrisInput.Gameplay.MoveLeft, MoveLeft);
@@ -77,30 +101,6 @@ public class Piece : MonoBehaviour
 		{
 			CancelInvoke(moveAction.Method.Name);
 		};
-	}
-
-	private void OnEnable()
-	{
-		tetrisInput.Enable();	
-	}
-
-	private void OnDisable()
-	{
-		tetrisInput.Disable();
-	}
-
-	private void Update()
-	{
-		board.Clear(this);
-
-		_lockTime += Time.deltaTime;
-		
-		if (Time.time >= _stepTime)
-		{
-			Step();
-		}
-		
-		board.Set(this);
 	}
 
 	public void ResetStepDelay()

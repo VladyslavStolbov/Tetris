@@ -27,28 +27,47 @@ public class UI : MonoBehaviour
 	[SerializeField] private Text CyanIText;
 
 	private Dictionary<Tetromino, Text> _tetrominoTextMapping;
+
+	[Header("Menus")] 
+	[SerializeField] private GameObject pauseMenu;
+	
+	private TetrisInput tetrisInput;
 	
 	private void Awake()
 	{
-		{
-			_tetrominoTextMapping = new Dictionary<Tetromino, Text>
-			{
-				{ Tetromino.I, CyanIText },
-				{ Tetromino.O, YellowOText },
-				{ Tetromino.T, PurpleTText },
-				{ Tetromino.J, BlueJText },
-				{ Tetromino.L, OrangeLText },
-				{ Tetromino.S, GreenSText },
-				{ Tetromino.Z, RedZText }
-			};
-		}			
-	}
-		
-	private void OnEnable()
-	{
-		UpdateUI();
+		CreateDict();
+
+		tetrisInput = new TetrisInput();
+		tetrisInput.UI.Cancel.performed += context => TurnPauseMenu();
 	}
 
+	private void OnEnable()
+	{
+		tetrisInput.Enable();
+		UpdateUI();
+	}
+	
+	private void CreateDict()
+	{
+		_tetrominoTextMapping = new Dictionary<Tetromino, Text>
+		{
+			{ Tetromino.I, CyanIText },
+			{ Tetromino.O, YellowOText },
+			{ Tetromino.T, PurpleTText },
+			{ Tetromino.J, BlueJText },
+			{ Tetromino.L, OrangeLText },
+			{ Tetromino.S, GreenSText },
+			{ Tetromino.Z, RedZText }
+		};
+	}
+
+	public void TurnPauseMenu()
+	{
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
+
+		Time.timeScale = Time.timeScale == 1f ? 0 : 1;
+	}
+	
 	public void UpdateUI()
 	{
 		scoreText.text = $"{gameData.score:000000}";
