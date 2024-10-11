@@ -33,6 +33,7 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         tilemap = GetComponentInChildren<Tilemap>();
         nextPiece = gameObject.AddComponent<Piece>();
         nextPiece.enabled = false;
