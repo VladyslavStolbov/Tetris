@@ -94,7 +94,7 @@ public class Piece : MonoBehaviour
 			{
 				moveAction(); 
 			}
-			AudioManager.Instance.PlaySfx("Move", volume: 0.3f);
+			SoundManager.Instance.PlaySfx("Move", volume: 0.3f);
 		};
 
 		action.canceled += context =>
@@ -162,7 +162,7 @@ public class Piece : MonoBehaviour
 		Debug.Log("HardDrop");
 		Lock();
 
-		AudioManager.Instance.PlaySfx("Drop", volume: 0.5f);
+		SoundManager.Instance.PlaySfx("Drop", volume: 0.5f);
 	}
 
 	private bool Move(Vector2Int translation)
@@ -202,7 +202,7 @@ public class Piece : MonoBehaviour
 			ApplyRotationMatrix(-direction);
 		}
 		
-		AudioManager.Instance.PlaySfx("Rotation", volume: 0.5f);
+		SoundManager.Instance.PlaySfx("Rotation", volume: 0.5f);
 	}
 
 	private void ApplyRotationMatrix(int direction)

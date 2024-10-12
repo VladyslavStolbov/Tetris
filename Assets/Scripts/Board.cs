@@ -98,7 +98,7 @@ public class Board : MonoBehaviour
         else
         {
             OnGameOver.Invoke();
-            AudioManager.Instance.PlaySfx("GameOver");
+            SoundManager.Instance.PlaySfx("GameOver");
         }
 
         SetNextPiece();
@@ -207,6 +207,6 @@ public class Board : MonoBehaviour
 
             row++;
         }
-        AudioManager.Instance.PlaySfx("ClearLine");
+        SoundManager.Instance.PlaySfx("ClearLine");
     }
 }
