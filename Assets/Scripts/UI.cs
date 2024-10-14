@@ -90,4 +90,14 @@ public class UI : MonoBehaviour
 			entry.Value.text = $"{gameData.Statistics[entry.Key]:000}";
 		}
 	}
+
+	public void MusicVolume()
+	{
+		SoundManager.Instance.MusicVolume(musicSlider.value);
+	}
+
+	public void SFXVolume()
+	{
+		SoundManager.Instance.SFXVolume(sfxSlider.value);
+	}
 }

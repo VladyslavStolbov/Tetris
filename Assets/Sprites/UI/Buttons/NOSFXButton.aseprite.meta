@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0b7f20124ec96864d9e0b4e1c0ab4717
+guid: 7efa993d02b0de74c990e755eef10e46
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: SFXButton
+  - name: NOSFXButton
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: dd750fa2e05b4554681dcdd4b8fe4814
+    spriteID: 56fcc7cc9ef47c649bf36b815322e167
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1860634713
-    name: SFXButton
+    guid: -1507981128
+    name: NOSFXButton
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: SFXButton
+    - name: NOSFXButton
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 32
         height: 32
-      spriteId: dd750fa2e05b4554681dcdd4b8fe4814
+      spriteId: 56fcc7cc9ef47c649bf36b815322e167
     linkedCells: []
     parentIndex: -1
   platformSettings:
