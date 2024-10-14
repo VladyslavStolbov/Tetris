@@ -7,6 +7,14 @@ public class UI : MonoBehaviour
 {
 	[SerializeField] private GameData gameData;
 
+	[Header("Menus")] 
+	[SerializeField] private GameObject pauseMenu;
+	[SerializeField] private GameObject optionsMenu;
+
+	[Header("OptionsMenu")] 
+	[SerializeField] private Slider musicSlider;
+	[SerializeField] private Slider sfxSlider;
+
 	[Header("Score")]
 	[SerializeField] private Text scoreText;
 	[SerializeField] private Text topScoreText;
@@ -18,18 +26,16 @@ public class UI : MonoBehaviour
 	[SerializeField] private Text linesClearedText;
 
 	[Header("Statistics")] 
-	[SerializeField] private Text PurpleTText;
-	[SerializeField] private Text BlueJText;
-	[SerializeField] private Text RedZText;
-	[SerializeField] private Text YellowOText;
-	[SerializeField] private Text GreenSText;
-	[SerializeField] private Text OrangeLText;
-	[SerializeField] private Text CyanIText;
+	[SerializeField] private Text purpleTText;
+	[SerializeField] private Text blueJText;
+	[SerializeField] private Text redZText;
+	[SerializeField] private Text yellowOText;
+	[SerializeField] private Text greenSText;
+	[SerializeField] private Text orangeLText;
+	[SerializeField] private Text cyanIText;
 
 	private Dictionary<Tetromino, Text> _tetrominoTextMapping;
 
-	[Header("Menus")] 
-	[SerializeField] private GameObject pauseMenu;
 	
 	private TetrisInput tetrisInput;
 	
@@ -51,13 +57,13 @@ public class UI : MonoBehaviour
 	{
 		_tetrominoTextMapping = new Dictionary<Tetromino, Text>
 		{
-			{ Tetromino.I, CyanIText },
-			{ Tetromino.O, YellowOText },
-			{ Tetromino.T, PurpleTText },
-			{ Tetromino.J, BlueJText },
-			{ Tetromino.L, OrangeLText },
-			{ Tetromino.S, GreenSText },
-			{ Tetromino.Z, RedZText }
+			{ Tetromino.I, cyanIText },
+			{ Tetromino.O, yellowOText },
+			{ Tetromino.T, purpleTText },
+			{ Tetromino.J, blueJText },
+			{ Tetromino.L, orangeLText },
+			{ Tetromino.S, greenSText },
+			{ Tetromino.Z, redZText }
 		};
 	}
 
