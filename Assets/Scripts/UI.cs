@@ -73,6 +73,11 @@ public class UI : MonoBehaviour
 
 		Time.timeScale = Time.timeScale == 1f ? 0 : 1;
 	}
+
+	public void TurnOptionsMenu()
+	{
+		optionsMenu.SetActive(!optionsMenu.activeSelf);
+	}
 	
 	public void UpdateUI()
 	{
