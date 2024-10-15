@@ -69,14 +69,15 @@ public class UI : MonoBehaviour
 
 	public void TurnPauseMenu()
 	{
+		if (optionsMenu.activeSelf) return;
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
-
 		Time.timeScale = Time.timeScale == 1f ? 0 : 1;
 	}
 
 	public void TurnOptionsMenu()
 	{
 		optionsMenu.SetActive(!optionsMenu.activeSelf);
+		pauseMenu.SetActive(!pauseMenu.activeSelf);
 	}
 	
 	public void UpdateUI()
