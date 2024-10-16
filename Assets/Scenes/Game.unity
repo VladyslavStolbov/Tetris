@@ -251,7 +251,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 53747450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ToggleOptionsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &53747450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +540,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: TurnOptionsMenu
+        m_MethodName: SaveVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ToggleOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2189,8 +2213,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435449750}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
@@ -2951,6 +2975,8 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
   pauseMenu: {fileID: 1696942391}
   optionsMenu: {fileID: 1319346099}
+  musicToggle: {fileID: 1123666347}
+  sfxToggle: {fileID: 559898680}
   musicSlider: {fileID: 1611729260}
   sfxSlider: {fileID: 1064394604}
   scoreText: {fileID: 1438447570}
@@ -3145,7 +3171,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: TurnOptionsMenu
+        m_MethodName: ToggleOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3772,8 +3798,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1435449750}
-        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+      - m_Target: {fileID: 923917402}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
@@ -11284,17 +11310,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432034126}
   m_CullTransparentMesh: 1
---- !u!114 &1435449750 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-  m_PrefabInstance: {fileID: 879150981828532161}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d4277193e64b64eb3f367e2bf3f795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1438447568
 GameObject:
   m_ObjectHideFlags: 0
@@ -11459,7 +11474,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: TurnPauseMenu
+        m_MethodName: TogglePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class SoundManager : MonoBehaviour
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		CheckCurrentScene();
 	}
+	
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
@@ -37,31 +39,29 @@ public class SoundManager : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == "StartMenu")
 		{
-			PlayMusic("StartMenu", volume: 0.5f);
+			PlayMusic("StartMenu");
 		}
 		else if (SceneManager.GetActiveScene().name == "Game")
 		{
-			PlayMusic("Game", volume: 0.5f);	
+			PlayMusic("Game");	
 		}
 	}
 
-	public void PlayMusic(string clipName, float volume = 1f)
+	public void PlayMusic(string clipName)
 	{
 		Sound s = Array.Find(musicSounds, x => x.name == clipName);
 		AudioClip randClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
 
 		musicSource.Stop();
 		musicSource.clip = randClip;
-		musicSource.volume = volume;
 		musicSource.Play();
 	}
 
-	public void PlaySfx(string clipName, float volume = 1f)
+	public void PlaySfx(string clipName)
 	{
 		Sound s = Array.Find(sfxSounds, x => x.name == clipName);
 		AudioClip randClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
 
-		sfxSource.volume = volume;
 		sfxSource.PlayOneShot(randClip);
 	}
 
