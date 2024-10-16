@@ -8,11 +8,6 @@ public class Buttons : MonoBehaviour
 		SceneManager.LoadScene("Game");
 	}
 
-	public void PauseButton()
-	{
-		
-	}
-
 	public void ExitButton()
 	{
 		SceneManager.LoadScene("StartMenu");

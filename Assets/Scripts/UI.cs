@@ -11,12 +11,6 @@ public class UI : MonoBehaviour
 	[SerializeField] private GameObject pauseMenu;
 	[SerializeField] private GameObject optionsMenu;
 
-	[Header("OptionsMenu")] 
-	[SerializeField] private Toggle musicToggle;
-	[SerializeField] private Toggle sfxToggle;
-	[SerializeField] private Slider musicSlider;
-	[SerializeField] private Slider sfxSlider;
-
 	[Header("Score")]
 	[SerializeField] private Text scoreText;
 	[SerializeField] private Text topScoreText;
@@ -47,7 +41,6 @@ public class UI : MonoBehaviour
 
 		tetrisInput = new TetrisInput();
 		tetrisInput.UI.Cancel.performed += context => TogglePauseMenu();
-		
 	}
 
 	private void OnEnable()
@@ -56,14 +49,6 @@ public class UI : MonoBehaviour
 		UpdateUI();
 	}
 		
-	private void Start()
-	{
-		musicToggle.isOn = PlayerPrefs.GetInt("MusicOn") != 0;
-		sfxToggle.isOn = PlayerPrefs.GetInt("SFXOn") != 0;
-		musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-		sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-	}
-	
 	private void CreateDict()
 	{
 		_tetrominoTextMapping = new Dictionary<Tetromino, Text>
@@ -107,33 +92,4 @@ public class UI : MonoBehaviour
 			entry.Value.text = $"{gameData.Statistics[entry.Key]:000}";
 		}
 	}
-
-	public void MusicVolume()
-	{
-		SoundManager.Instance.MusicVolume(musicSlider.value);
-	}
-
-	public void SFXVolume()
-	{
-		SoundManager.Instance.SFXVolume(sfxSlider.value);
-	}
-
-	public void ToggleMusic()
-	{
-		SoundManager.Instance.ToggleMusic();
-	}
-
-	public void ToggleSFX()
-	{
-		SoundManager.Instance.ToggleSFX();
-	}
-
-	public void SaveVolume()
-	{
-		PlayerPrefs.SetInt("MusicOn", musicToggle.isOn ? 1 : 0);
-		PlayerPrefs.SetInt("SFXOn", sfxToggle.isOn ? 1 : 0);
-		PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-		PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
-	}
-
 }

@@ -10,6 +10,11 @@ public class SoundManager : MonoBehaviour
 	public Sound[] musicSounds, sfxSounds;
 	public AudioSource musicSource, sfxSource;
 
+	[SerializeField] private Toggle musicToggle;
+	[SerializeField] private Toggle sfxToggle;
+	[SerializeField] private Slider musicSlider;
+	[SerializeField] private Slider sfxSlider;
+
 	private void Awake()
 	{
 		if (!Instance)
@@ -26,9 +31,17 @@ public class SoundManager : MonoBehaviour
 	private void Start()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
+		SetupSoundPrefs();
 		CheckCurrentScene();
 	}
 	
+	public void SetupSoundPrefs()
+	{
+		musicToggle.isOn = PlayerPrefs.GetInt("MusicOn") != 0;
+		sfxToggle.isOn = PlayerPrefs.GetInt("SFXOn") != 0;
+		musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+		sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+	}
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
@@ -75,13 +88,22 @@ public class SoundManager : MonoBehaviour
 		sfxSource.mute = !sfxSource.mute;
 	}
 
-	public void MusicVolume(float volume)
+	public void MusicVolume()
 	{
-		musicSource.volume = volume;
+		musicSource.volume = musicSlider.value;
 	}
 
-	public void SFXVolume(float volume)
+	public void SFXVolume()
 	{
-		sfxSource.volume = volume;
+		sfxSource.volume = sfxSlider.value;
 	}
+
+	public void SaveVolume()
+	{
+		PlayerPrefs.SetInt("MusicOn", musicToggle.isOn ? 1 : 0);
+		PlayerPrefs.SetInt("SFXOn", sfxToggle.isOn ? 1 : 0);
+		PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
+		PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
+	}
+
 }
