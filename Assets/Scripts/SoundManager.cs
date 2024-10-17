@@ -1,7 +1,14 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
+[Serializable]
+public class Sound
+{
+	public string name;
+	public AudioClip[] clips;
+}
 
 public class SoundManager : MonoBehaviour
 {
@@ -9,11 +16,6 @@ public class SoundManager : MonoBehaviour
 	
 	public Sound[] musicSounds, sfxSounds;
 	public AudioSource musicSource, sfxSource;
-
-	[SerializeField] private Toggle musicToggle;
-	[SerializeField] private Toggle sfxToggle;
-	[SerializeField] private Slider musicSlider;
-	[SerializeField] private Slider sfxSlider;
 
 	private void Awake()
 	{
@@ -31,18 +33,9 @@ public class SoundManager : MonoBehaviour
 	private void Start()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
-		SetupSoundPrefs();
 		CheckCurrentScene();
 	}
 	
-	public void SetupSoundPrefs()
-	{
-		musicToggle.isOn = PlayerPrefs.GetInt("MusicOn") != 0;
-		sfxToggle.isOn = PlayerPrefs.GetInt("SFXOn") != 0;
-		musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-		sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-	}
-
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		CheckCurrentScene();
@@ -88,22 +81,13 @@ public class SoundManager : MonoBehaviour
 		sfxSource.mute = !sfxSource.mute;
 	}
 
-	public void MusicVolume()
+	public void MusicVolume(float volume)
 	{
-		musicSource.volume = musicSlider.value;
+		musicSource.volume = volume;
 	}
 
-	public void SFXVolume()
+	public void SFXVolume(float volume)
 	{
-		sfxSource.volume = sfxSlider.value;
+		sfxSource.volume = volume;
 	}
-
-	public void SaveVolume()
-	{
-		PlayerPrefs.SetInt("MusicOn", musicToggle.isOn ? 1 : 0);
-		PlayerPrefs.SetInt("SFXOn", sfxToggle.isOn ? 1 : 0);
-		PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-		PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
-	}
-
 }

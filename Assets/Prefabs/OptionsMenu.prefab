@@ -826,8 +826,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+      - m_Target: {fileID: 1860423101083232549}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 1
         m_Arguments:
@@ -1146,8 +1146,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+      - m_Target: {fileID: 1860423101083232549}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SaveVolume
         m_Mode: 1
         m_Arguments:
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 4309435386684736295}
   - component: {fileID: 6996973106668524875}
   - component: {fileID: 5183959088066617905}
-  - component: {fileID: 6064245604892409791}
+  - component: {fileID: 1860423101083232549}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6064245604892409791
+--- !u!114 &1860423101083232549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1336,9 +1336,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4184086158567891682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23a7af14e6833c489d2cf52af256f14, type: 3}
+  m_Script: {fileID: 11500000, guid: 778b2be444e02fe43969fa92d1e8bc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicToggle: {fileID: 5194444210175073655}
+  sfxToggle: {fileID: 9088139386329243905}
+  musicSlider: {fileID: 2858295348213172459}
+  sfxSlider: {fileID: 7573520741398296347}
 --- !u!1 &4675520012284296938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,8 +1433,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+      - m_Target: {fileID: 1860423101083232549}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: SFXVolume
         m_Mode: 1
         m_Arguments:
@@ -2663,8 +2667,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+      - m_Target: {fileID: 1860423101083232549}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
@@ -5100,8 +5104,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+      - m_Target: {fileID: 1860423101083232549}
+        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:

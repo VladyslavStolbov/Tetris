@@ -1586,17 +1586,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565994897}
   m_CullTransparentMesh: 1
---- !u!114 &607576352 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-  m_PrefabInstance: {fileID: 879150981828532161}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d4277193e64b64eb3f367e2bf3f795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,6 +9981,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4309435386684736295, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
   m_PrefabInstance: {fileID: 2064906459021497267}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319346101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1860423101083232549, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
+  m_PrefabInstance: {fileID: 2064906459021497267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319346099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778b2be444e02fe43969fa92d1e8bc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1432034126
 GameObject:
   m_ObjectHideFlags: 0
@@ -13447,6 +13447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484028570937782744, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2012442398523490385, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13487,9 +13491,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3963244953209456944, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4817397707841828147, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901158886804049942, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
       propertyPath: sfxSlider
@@ -13507,6 +13531,14 @@ PrefabInstance:
       propertyPath: musicToggle
       value: 
       objectReference: {fileID: 1123666347}
+    - target: {fileID: 7423323611771093487, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645790684369546185, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13520,17 +13552,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 923917401}
     m_Modifications:
+    - target: {fileID: 1860423101083232549, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 1064394604}
+    - target: {fileID: 1860423101083232549, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
+      propertyPath: sfxToggle
+      value: 
+      objectReference: {fileID: 559898680}
+    - target: {fileID: 1860423101083232549, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 1611729260}
+    - target: {fileID: 1860423101083232549, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
+      propertyPath: musicToggle
+      value: 
+      objectReference: {fileID: 1123666347}
     - target: {fileID: 2858295348213172459, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 607576352}
+      objectReference: {fileID: 1319346101}
     - target: {fileID: 2858295348213172459, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MusicVolume
       objectReference: {fileID: 0}
     - target: {fileID: 2858295348213172459, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManager, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3108289196197510896, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13623,31 +13671,31 @@ PrefabInstance:
     - target: {fileID: 5194444210175073655, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 607576352}
+      objectReference: {fileID: 1319346101}
     - target: {fileID: 5194444210175073655, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleMusic
       objectReference: {fileID: 0}
     - target: {fileID: 5194444210175073655, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManager, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7573520741398296347, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 607576352}
+      objectReference: {fileID: 1319346101}
     - target: {fileID: 7573520741398296347, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SFXVolume
       objectReference: {fileID: 0}
     - target: {fileID: 7573520741398296347, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManager, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8455115282980895362, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 607576352}
+      objectReference: {fileID: 1319346101}
     - target: {fileID: 8455115282980895362, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -13658,19 +13706,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8455115282980895362, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManager, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9088139386329243905, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 607576352}
+      objectReference: {fileID: 1319346101}
     - target: {fileID: 9088139386329243905, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToggleSFX
       objectReference: {fileID: 0}
     - target: {fileID: 9088139386329243905, guid: 75dd842fea0070542a31f8e10701be5b, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SoundManager, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13681,9 +13729,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1948286908}
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 1948286908}
   - {fileID: 1079867117}
   - {fileID: 923917401}
   - {fileID: 111859151}
