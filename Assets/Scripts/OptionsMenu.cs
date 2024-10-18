@@ -13,8 +13,8 @@ public class OptionsMenu : MonoBehaviour
 		SetupSoundPrefs();
 		SoundManager.Instance.ApplyVolume();
 	}
-	
-	public void SetupSoundPrefs()
+
+	private void SetupSoundPrefs()
 	{
 		musicToggle.isOn = PlayerPrefs.GetInt("MusicOn") != 0;
 		sfxToggle.isOn = PlayerPrefs.GetInt("SFXOn") != 0;
