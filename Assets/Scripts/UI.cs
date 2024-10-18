@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
 
 	[Header("Menus")] 
 	[SerializeField] private GameObject pauseMenu;
-	[SerializeField] private GameObject optionsMenu;
+	[SerializeField] private OptionsMenu optionsMenu;
 
 	[Header("Score")]
 	[SerializeField] private Text scoreText;
@@ -65,14 +65,14 @@ public class UI : MonoBehaviour
 
 	public void TogglePauseMenu()
 	{
-		if (optionsMenu.activeSelf) return;
+		if (optionsMenu.gameObject.activeSelf) return;
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
 		Time.timeScale = Time.timeScale == 1f ? 0 : 1;
 	}
 
 	public void ToggleOptionsMenu()
 	{
-		optionsMenu.SetActive(!optionsMenu.activeSelf);
+		optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
 	}
 	

@@ -8,11 +8,12 @@ public class OptionsMenu : MonoBehaviour
 	[SerializeField] private Slider musicSlider;
 	[SerializeField] private Slider sfxSlider;
 
-    private void Awake()
-    {
-        SetupSoundPrefs();
-    }
-
+	private void Awake()
+	{
+		SetupSoundPrefs();
+		SoundManager.Instance.ApplyVolume();
+	}
+	
 	public void SetupSoundPrefs()
 	{
 		musicToggle.isOn = PlayerPrefs.GetInt("MusicOn") != 0;
@@ -21,14 +22,24 @@ public class OptionsMenu : MonoBehaviour
 		sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
 	}
 
+	public void SetMusic()
+	{
+        SoundManager.Instance.SetMusic(musicToggle.isOn);
+	}    
+
+	public void SetSFX()
+	{
+        SoundManager.Instance.SetSFX(sfxToggle.isOn);
+	}
+
 	public void ToggleMusic()
 	{
-        SoundManager.Instance.ToggleMusic();
+		SoundManager.Instance.ToggleMusic();
 	}
 
 	public void ToggleSFX()
 	{
-        SoundManager.Instance.ToggleSFX();
+		SoundManager.Instance.ToggleSFX();
 	}
 
 	public void MusicVolume()
@@ -47,5 +58,6 @@ public class OptionsMenu : MonoBehaviour
 		PlayerPrefs.SetInt("SFXOn", sfxToggle.isOn ? 1 : 0);
 		PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
 		PlayerPrefs.SetFloat("SFXVolume", sfxSlider.value);
+		PlayerPrefs.Save();
 	}
 }

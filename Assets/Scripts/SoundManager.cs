@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,12 +29,12 @@ public class SoundManager : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
-		CheckCurrentScene();
+		ApplyVolume();
 	}
-	
+
 	private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		CheckCurrentScene();
@@ -89,5 +88,23 @@ public class SoundManager : MonoBehaviour
 	public void SFXVolume(float volume)
 	{
 		sfxSource.volume = volume;
+	}
+
+	public void SetMusic(bool isOn)
+	{
+		musicSource.mute = !isOn;
+	}
+
+	public void SetSFX(bool isOn)
+	{
+		sfxSource.mute = !isOn;
+	}
+
+	public void ApplyVolume()
+	{
+		SetMusic(PlayerPrefs.GetInt("MusicOn") != 0);
+		SetSFX(PlayerPrefs.GetInt("SFXOn") != 0);
+		MusicVolume(PlayerPrefs.GetFloat("MusicVolume"));
+		SFXVolume(PlayerPrefs.GetFloat("SFXVolume"));
 	}
 }
