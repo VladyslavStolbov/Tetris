@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,9 @@ public class UI : MonoBehaviour
 	[Header("Menus")] 
 	[SerializeField] private GameObject pauseMenu;
 	[SerializeField] private OptionsMenu optionsMenu;
-
+	[SerializeField] private GameObject gameOverMenu;
+	[SerializeField] private Text finalScoreText;
+	
 	[Header("Score")]
 	[SerializeField] private Text scoreText;
 	[SerializeField] private Text topScoreText;
@@ -67,13 +70,22 @@ public class UI : MonoBehaviour
 	{
 		if (optionsMenu.gameObject.activeSelf) return;
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
-		Time.timeScale = Time.timeScale == 1f ? 0 : 1;
+		Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 	}
 
 	public void ToggleOptionsMenu()
 	{
 		optionsMenu.gameObject.SetActive(!optionsMenu.gameObject.activeSelf);
 		pauseMenu.SetActive(!pauseMenu.activeSelf);
+	}
+	
+	public void ToggleGameOverMenu()
+	{
+		gameOverMenu.SetActive(!gameOverMenu.activeSelf);
+		SoundManager.Instance.SetMusic(false);
+		SoundManager.Instance.SetSFX(false);
+		finalScoreText.text = gameData.score.ToString();
+		Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 	}
 	
 	public void UpdateUI()
