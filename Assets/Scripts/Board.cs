@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class Board : MonoBehaviour
     public UnityEvent<Tetromino> OnPieceSpawn;
     
     private List<int> _bag = new (); 
+    private bool isClearing;
 
 
     private void Awake()
@@ -102,6 +104,26 @@ public class Board : MonoBehaviour
 
         SetNextPiece();
     }
+    
+    public bool IsValidPosition(Piece piece, Vector3Int position)
+    {
+        RectInt bounds = Bounds;
+
+        for (int i = 0; i < piece.cells.Length; i++)
+        {
+            Vector3Int tilePosition = piece.cells[i] + position;
+
+            if (tilemap.HasTile(tilePosition))
+            {
+                return false;
+            }
+            if (!bounds.Contains((Vector2Int)tilePosition))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void Set(Piece piece)
     {
@@ -119,29 +141,6 @@ public class Board : MonoBehaviour
             Vector3Int tilePosition = piece.cells[i] + piece.position;
             tilemap.SetTile(tilePosition, null);
         }
-    }
-
-    public bool IsValidPosition(Piece piece, Vector3Int position)
-    {
-        RectInt bounds = Bounds;
-
-        for (int i = 0; i < piece.cells.Length; i++)
-        {
-            Vector3Int tilePosition = piece.cells[i] + position;
-
-            if (tilemap.HasTile(tilePosition))
-            {
-                Debug.Log("Has tile");
-                return false;
-            }
-
-            if (!bounds.Contains((Vector2Int)tilePosition))
-            {
-                Debug.Log($"Position {tilePosition} is out of bounds!");
-                return false;
-            }
-        }
-        return true;
     }
 
     public void ClearLines()
@@ -162,7 +161,6 @@ public class Board : MonoBehaviour
                 row++;
             }
         }
-
         OnClearLines.Invoke(linesAmount);
     }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -155,8 +156,6 @@ public class Piece : MonoBehaviour
 		board.Set(this);
 		board.ClearLines();
 		board.SpawnPiece();
-		
-		Debug.Log("Lock");
 	}
 
 	private void HardDrop()
