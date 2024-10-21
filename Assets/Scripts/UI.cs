@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,9 +81,8 @@ public class UI : MonoBehaviour
 	public void ToggleGameOverMenu()
 	{
 		gameOverMenu.SetActive(!gameOverMenu.activeSelf);
-		SoundManager.Instance.SetMusic(false);
-		SoundManager.Instance.SetSFX(false);
 		finalScoreText.text = gameData.score.ToString();
+		SoundManager.Instance.PlayMusic("GameOver", loop: false);
 		Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 	}
 	

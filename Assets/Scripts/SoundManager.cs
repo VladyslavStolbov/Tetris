@@ -52,13 +52,14 @@ public class SoundManager : MonoBehaviour
 		}
 	}
 
-	public void PlayMusic(string clipName)
+	public void PlayMusic(string clipName, bool loop = true)
 	{
 		Sound s = Array.Find(musicSounds, x => x.name == clipName);
 		AudioClip randClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
 
 		musicSource.Stop();
 		musicSource.clip = randClip;
+		musicSource.loop = loop;
 		musicSource.Play();
 	}
 

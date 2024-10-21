@@ -63,6 +63,8 @@ public class Piece : MonoBehaviour
 
 	private void Update()
 	{
+		ManageGameplayInput();
+		
 		board.Clear(this);
 
 		_lockTime += Time.deltaTime;
@@ -74,7 +76,19 @@ public class Piece : MonoBehaviour
 		
 		board.Set(this);
 	}
-	
+
+	private void ManageGameplayInput()
+	{
+		if (Time.timeScale == 0)
+		{
+			tetrisInput.Gameplay.Disable();
+		}
+		else
+		{
+			tetrisInput.Gameplay.Enable();
+		}
+	}
+
 	private void ManageMovement()
 	{
 		RegisterMovement(tetrisInput.Gameplay.MoveLeft, MoveLeft);
