@@ -30,7 +30,7 @@ public class Board : MonoBehaviour
     public UnityEvent<Tetromino> OnPieceSpawn;
     
     private List<int> _bag = new (); 
-    private bool isClearing;
+    private bool _isClearing = false;
 
 
     private void Awake()
@@ -55,7 +55,7 @@ public class Board : MonoBehaviour
     }
 
     private void FillBag()
-    {
+    { 
         HashSet<int> temp = new();
         int capacity = 7;
         while (temp.Count != capacity)
@@ -68,7 +68,6 @@ public class Board : MonoBehaviour
     }
 
     private void SetNextPiece()
-    
     {
         if (nextPiece.cells != null) {
             Clear(nextPiece);
@@ -90,6 +89,27 @@ public class Board : MonoBehaviour
 
     public void SpawnPiece()
     {
+        if (_isClearing)
+        {
+            StartCoroutine(SpawnPieceAfterClearing());
+        }
+        else
+        {
+            SpawnPieceImmediate();
+        }
+    }
+
+    private IEnumerator SpawnPieceAfterClearing()
+    {
+        while (_isClearing)
+        {
+            yield return null;
+        }
+        SpawnPieceImmediate();
+    }
+
+    private void SpawnPieceImmediate()
+    {
         activePiece.Initialize(this, spawnPosition, nextPiece.data);
 
         if (IsValidPosition(activePiece, spawnPosition))
@@ -104,7 +124,7 @@ public class Board : MonoBehaviour
 
         SetNextPiece();
     }
-    
+
     public bool IsValidPosition(Piece piece, Vector3Int position)
     {
         RectInt bounds = Bounds;
@@ -143,8 +163,9 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void ClearLines()
+    public IEnumerator ClearLines()
     {
+        _isClearing = true;
         RectInt bounds = Bounds;
         int row = bounds.yMin;
         int linesAmount = 0;
@@ -153,8 +174,8 @@ public class Board : MonoBehaviour
         {
             if (IsLineFull(row))
             {
+                yield return StartCoroutine(ClearLine(row));
                 linesAmount += 1;
-                ClearLine(row);
             }
             else
             {
@@ -162,6 +183,7 @@ public class Board : MonoBehaviour
             }
         }
         OnClearLines.Invoke(linesAmount);
+        _isClearing = false;
     }
 
     private bool IsLineFull(int row)
@@ -181,7 +203,7 @@ public class Board : MonoBehaviour
         return true;
     }
 
-    private void ClearLine(int row)
+    private IEnumerator ClearLine(int row)
     {
         RectInt bounds = Bounds;
 
@@ -189,6 +211,7 @@ public class Board : MonoBehaviour
         {
             Vector3Int position = new(col, row, 0);
             tilemap.SetTile(position, null);
+            yield return new WaitForSeconds(0.1f);
         }
 
         while (row < bounds.yMax)

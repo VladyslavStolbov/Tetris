@@ -154,10 +154,15 @@ public class Piece : MonoBehaviour
 	private void Lock()
 	{
 		board.Set(this);
-		board.ClearLines();
-		board.SpawnPiece();
+		StartCoroutine(ClearAndSpawn());
 	}
 
+	private IEnumerator ClearAndSpawn()
+	{
+		yield return StartCoroutine(board.ClearLines());
+		board.SpawnPiece();
+	}
+	
 	private void HardDrop()
 	{
 		board.Clear(this);
