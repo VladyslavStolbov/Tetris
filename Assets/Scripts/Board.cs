@@ -11,6 +11,7 @@ public class Board : MonoBehaviour
     public Tilemap tilemap { get; private set; }
     public Piece activePiece { get; private set; }
     public Piece nextPiece { get; private set; }
+    public bool isClearing { get; private set; }
 
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition = new(0, 8, 0);
@@ -30,7 +31,6 @@ public class Board : MonoBehaviour
     public UnityEvent<Tetromino> OnPieceSpawn;
     
     private List<int> _bag = new (); 
-    private bool _isClearing = false;
 
 
     private void Awake()
@@ -55,7 +55,7 @@ public class Board : MonoBehaviour
     }
 
     private void FillBag()
-    { 
+    {
         HashSet<int> temp = new();
         int capacity = 7;
         while (temp.Count != capacity)
@@ -89,7 +89,7 @@ public class Board : MonoBehaviour
 
     public void SpawnPiece()
     {
-        if (_isClearing)
+        if (isClearing)
         {
             StartCoroutine(SpawnPieceAfterClearing());
         }
@@ -101,7 +101,7 @@ public class Board : MonoBehaviour
 
     private IEnumerator SpawnPieceAfterClearing()
     {
-        while (_isClearing)
+        while (isClearing)
         {
             yield return null;
         }
@@ -165,7 +165,7 @@ public class Board : MonoBehaviour
 
     public IEnumerator ClearLines()
     {
-        _isClearing = true;
+        isClearing = true;
         RectInt bounds = Bounds;
         int row = bounds.yMin;
         int linesAmount = 0;
@@ -183,24 +183,7 @@ public class Board : MonoBehaviour
             }
         }
         OnClearLines.Invoke(linesAmount);
-        _isClearing = false;
-    }
-
-    private bool IsLineFull(int row)
-    {
-        RectInt bounds = Bounds;
-
-        for (int col = bounds.xMin; col < bounds.xMax; col++)
-        {
-            Vector3Int position = new(col, row, 0);
-
-            if (!tilemap.HasTile(position))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        isClearing = false;
     }
 
     private IEnumerator ClearLine(int row)
@@ -228,5 +211,22 @@ public class Board : MonoBehaviour
             row++;
         }
         SoundManager.Instance.PlaySfx("ClearLine");
+    }
+    
+    private bool IsLineFull(int row)
+    {
+        RectInt bounds = Bounds;
+
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
+            Vector3Int position = new(col, row, 0);
+
+            if (!tilemap.HasTile(position))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

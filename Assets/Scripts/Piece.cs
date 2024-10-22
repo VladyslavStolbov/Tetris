@@ -64,6 +64,8 @@ public class Piece : MonoBehaviour
 
 	private void Update()
 	{
+		if (board.isClearing) return;
+		
 		ManageGameplayInput();
 		
 		board.Clear(this);
@@ -154,17 +156,19 @@ public class Piece : MonoBehaviour
 	private void Lock()
 	{
 		board.Set(this);
-		StartCoroutine(ClearAndSpawn());
+		StartCoroutine(ClearAndLock());
 	}
 
-	private IEnumerator ClearAndSpawn()
+	private IEnumerator ClearAndLock()
 	{
 		yield return StartCoroutine(board.ClearLines());
 		board.SpawnPiece();
 	}
-	
+
 	private void HardDrop()
 	{
+		if (board.isClearing) return;
+		
 		board.Clear(this);
 		
 		Vector3Int dropPosition = position;
@@ -177,7 +181,6 @@ public class Piece : MonoBehaviour
 		position = dropPosition;
 		board.Set(this);
 		
-		Debug.Log("HardDrop");
 		Lock();
 
 		SoundManager.Instance.PlaySfx("Drop");
@@ -185,6 +188,8 @@ public class Piece : MonoBehaviour
 
 	private bool Move(Vector2Int translation)
 	{
+		if (board.isClearing) return false;
+		
 		board.Clear(this);
 		
 		Vector3Int newPosition = position;
