@@ -182,6 +182,7 @@ public class Board : MonoBehaviour
                 row++;
             }
         }
+
         OnClearLines.Invoke(linesAmount);
         isClearing = false;
     }
@@ -189,14 +190,28 @@ public class Board : MonoBehaviour
     private IEnumerator ClearLine(int row)
     {
         RectInt bounds = Bounds;
+        int center = (bounds.xMin + bounds.xMax) / 2;
 
-        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        for (int i = 0; i <= bounds.xMax - bounds.xMin; i++)
         {
-            Vector3Int position = new(col, row, 0);
-            tilemap.SetTile(position, null);
-            yield return new WaitForSeconds(0.1f);
-        }
+            int left = center - i;
+            int right = center + i;
 
+            if (left >= bounds.xMin)
+            {
+                Vector3Int leftPos = new(left, row, 0);
+                tilemap.SetTile(leftPos, null);
+            }
+            
+            if (right < bounds.xMax)
+            {
+                Vector3Int rightPos = new(right, row, 0);
+                tilemap.SetTile(rightPos, null);
+            }
+
+            yield return new WaitForSeconds(0.05f);
+        }
+        
         while (row < bounds.yMax)
         {
             for (int col = bounds.xMin; col < bounds.xMax; col++)

@@ -64,6 +64,7 @@ public class Piece : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log("Lock");
 		if (board.isClearing) return;
 		
 		ManageGameplayInput();
