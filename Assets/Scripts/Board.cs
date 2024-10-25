@@ -168,7 +168,6 @@ public class Board : MonoBehaviour
     {
         isClearing = true;
         RectInt bounds = Bounds;
-        int linesAmount = 0;
         List<int> rowsToClear = new();
 
         for (int row = bounds.yMin; row < bounds.yMax; row++)
@@ -176,52 +175,59 @@ public class Board : MonoBehaviour
             if (IsLineFull(row))
             {
                 rowsToClear.Add(row);
-                linesAmount++;
             }
         }
 
-        foreach (int row in rowsToClear)
+        if (rowsToClear.Count > 0)
         {
-            StartCoroutine(ClearLine(row));
-        }
+            foreach (int row in rowsToClear)
+            {
+                StartCoroutine(ClearLine(row));
+            }
 
-        yield return null; 
-        MoveRows(rowsToClear);
+            yield return new WaitForSeconds(5f);
+            MoveRowsDown(rowsToClear);
+            OnClearLines.Invoke(rowsToClear.Count);
+        }
         
-        // while (row < bounds.yMax)
-        // {
-        //     if (IsLineFull(row))
-        //     {
-        //         yield return StartCoroutine(ClearLine(row));
-        //         MoveRow(row); 
-        //         linesAmount += 1;
-        //     }
-        //     else
-        //     {
-        //         row++;
-        //     } 
-        // }
-        OnClearLines.Invoke(linesAmount);
         isClearing = false;
     }
 
-    private void MoveRows(List<int> rowsToClear)
+    private void MoveRowsDown(List<int> rowsToClear)
     {
         RectInt bounds = Bounds;
-        foreach (int clearedRow in rowsToClear)
-        {
-            for (int row = clearedRow; row < bounds.yMax; row++)
-            {
-                for (int col = bounds.xMin; col < bounds.xMax; col++)
-                {
-                    Vector3Int position = new(col, row + 1, 0);
-                    TileBase above = tilemap.GetTile(position);
 
-                    position = new Vector3Int(col, row, 0);
-                    tilemap.SetTile(position, above);
-                }
+        int row = rowsToClear.Last();
+        while (row < bounds.yMax)
+        {
+            for (int col = bounds.xMin; col < bounds.xMax; col++)
+            {
+                Vector3Int position = new(col, row + 1, 0);
+                TileBase above = tilemap.GetTile(position);
+
+                position = new Vector3Int(col, row, 0);
+                tilemap.SetTile(position, above);
+            }
+            row++;
+        }
+    }
+
+    private bool IsRowEmpty(int row)
+    {
+        RectInt bounds = Bounds; // Assuming Bounds defines the area of the tilemap
+
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        {
+            Vector3Int position = new Vector3Int(col, row, 0);
+        
+            // Check if there's a tile at the current position
+            if (tilemap.HasTile(position))
+            {
+                return false; // There's a tile, so the row is not empty
             }
         }
+
+        return true; // The row is empty  
     }
 
 
