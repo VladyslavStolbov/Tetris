@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -31,8 +31,7 @@ public class Board : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent<Tetromino> OnPieceSpawn;
     
-    private List<int> _bag = new (); 
-
+    private List<int> _bag = new(); 
 
     private void Awake()
     {
@@ -79,7 +78,7 @@ public class Board : MonoBehaviour
             FillBag();
         }
         
-        int random = Random.Range(0, _bag.Count );
+        int random = Random.Range(0, _bag.Count);
         TetrominoData data = tetrominoes[_bag[random]];
         _bag.RemoveAt(random);
         
@@ -128,8 +127,6 @@ public class Board : MonoBehaviour
 
     public bool IsValidPosition(Piece piece, Vector3Int position)
     {
-        RectInt bounds = Bounds;
-
         for (int i = 0; i < piece.cells.Length; i++)
         {
             Vector3Int tilePosition = piece.cells[i] + position;
@@ -138,7 +135,7 @@ public class Board : MonoBehaviour
             {
                 return false;
             }
-            if (!bounds.Contains((Vector2Int)tilePosition))
+            if (!Bounds.Contains((Vector2Int)tilePosition))
             {
                 return false;
             }
@@ -166,11 +163,9 @@ public class Board : MonoBehaviour
 
     public IEnumerator ClearLines()
     {
-        isClearing = true;
-        RectInt bounds = Bounds;
         List<int> rowsToClear = new();
 
-        for (int row = bounds.yMin; row < bounds.yMax; row++)
+        for (int row = Bounds.yMin; row < Bounds.yMax; row++)
         {
             if (IsLineFull(row))
             {
@@ -180,74 +175,71 @@ public class Board : MonoBehaviour
 
         if (rowsToClear.Count > 0)
         {
+            isClearing = true;
+            
             foreach (int row in rowsToClear)
             {
                 StartCoroutine(ClearLine(row));
             }
 
-            yield return new WaitForSeconds(5f);
-            MoveRowsDown(rowsToClear);
+            SoundManager.Instance.PlaySfx("ClearLine");
+            yield return new WaitForSeconds(0.5f);
+            MoveRowsDown();
             OnClearLines.Invoke(rowsToClear.Count);
+            
+            isClearing = false;
         }
-        
-        isClearing = false;
     }
 
-    private void MoveRowsDown(List<int> rowsToClear)
+    private void MoveRowsDown()
     {
-        RectInt bounds = Bounds;
-
-        int row = rowsToClear.Last();
-        while (row < bounds.yMax)
+        int targetRow = Bounds.yMin;
+        for (int row = Bounds.yMin; row < Bounds.yMax; row++)
         {
-            for (int col = bounds.xMin; col < bounds.xMax; col++)
+            if (IsRowEmpty(row) || targetRow == row) continue;
+            for (int col = Bounds.xMin; col < Bounds.xMax; col++)
             {
-                Vector3Int position = new(col, row + 1, 0);
-                TileBase above = tilemap.GetTile(position);
+                Vector3Int sourcePosition = new(col, row, 0);
+                TileBase tile = tilemap.GetTile(sourcePosition);
 
-                position = new Vector3Int(col, row, 0);
-                tilemap.SetTile(position, above);
+                Vector3Int targetPosition = new(col, targetRow, 0);
+                tilemap.SetTile(targetPosition, tile);
+                tilemap.SetTile(sourcePosition, null);
             }
-            row++;
+            targetRow++;
         }
     }
 
     private bool IsRowEmpty(int row)
     {
-        RectInt bounds = Bounds; // Assuming Bounds defines the area of the tilemap
-
-        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        for (int col = Bounds.xMin; col < Bounds.xMax; col++)
         {
-            Vector3Int position = new Vector3Int(col, row, 0);
+            Vector3Int position = new(col, row, 0);
         
-            // Check if there's a tile at the current position
             if (tilemap.HasTile(position))
             {
-                return false; // There's a tile, so the row is not empty
+                return false; 
             }
         }
-
-        return true; // The row is empty  
+        return true;
     }
-
 
     private IEnumerator ClearLine(int row)
     {
-        RectInt bounds = Bounds;
-        int center = (bounds.xMin + bounds.xMax) / 2;
+        int center = (Bounds.xMin + Bounds.xMax) / 2;
 
-        for (int i = 0; i <= bounds.xMax - bounds.xMin; i++)
+        for (int i = 0; i <= Bounds.xMax - Bounds.xMin; i++)
         {
             int left = center - i;
             int right = center + i;
 
-            if (left >= bounds.xMin)
+            if (left >= Bounds.xMin)
             {
                 Vector3Int leftPos = new(left, row, 0);
                 tilemap.SetTile(leftPos, null);
             }
             
-            if (right < bounds.xMax)
+            if (right < Bounds.xMax)
             {
                 Vector3Int rightPos = new(right, row, 0);
                 tilemap.SetTile(rightPos, null);
@@ -256,14 +248,11 @@ public class Board : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         
-        SoundManager.Instance.PlaySfx("ClearLine");
     }
     
     private bool IsLineFull(int row)
     {
-        RectInt bounds = Bounds;
-
-        for (int col = bounds.xMin; col < bounds.xMax; col++)
+        for (int col = Bounds.xMin; col < Bounds.xMax; col++)
         {
             Vector3Int position = new(col, row, 0);
 
@@ -272,7 +261,6 @@ public class Board : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 }
