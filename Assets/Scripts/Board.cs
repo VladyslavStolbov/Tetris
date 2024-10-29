@@ -191,7 +191,7 @@ public class Board : MonoBehaviour
 
     private void MoveRowsDown()
     {
-        int targetRow = bounds.yMin;
+        int targetRow = GetTargetRow(); 
         for (int row = bounds.yMin; row < bounds.yMax; row++)
         {
             if (IsRowEmpty(row) || targetRow == row) continue;
@@ -206,6 +206,18 @@ public class Board : MonoBehaviour
             }
             targetRow++;
         }
+    }
+
+    private int GetTargetRow()
+    {
+        for (int row = bounds.yMax - 1; row >= bounds.yMin; row--)
+        {
+            if (IsRowEmpty(row))
+            {
+                return row;
+            }
+        }
+        return bounds.yMin;
     }
 
     private bool IsRowEmpty(int row)
