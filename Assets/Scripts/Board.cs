@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,13 +12,7 @@ public class Board : MonoBehaviour
     public Piece activePiece { get; private set; }
     public Piece nextPiece { get; private set; }
     public bool isClearing { get; private set; }
-
-    public TetrominoData[] tetrominoes;
-    public Vector3Int spawnPosition = new(0, 8, 0);
-    public Vector3Int previewPosition = new(10, 6, 0);
-    public Vector2Int boardSize = new(10, 20);
-    public GameData gameData;
-    public RectInt Bounds
+    private RectInt bounds
     {
         get
         {
@@ -27,12 +20,17 @@ public class Board : MonoBehaviour
             return new RectInt(position, boardSize);
         }
     }
-    public UnityEvent<int> OnClearLines;
-    public UnityEvent OnGameOver;
-    public UnityEvent<Tetromino> OnPieceSpawn;
+    public TetrominoData[] tetrominoes;
+    public Vector3Int spawnPosition = new(0, 8, 0);
+    public Vector3Int previewPosition = new(10, 6, 0);
+    public Vector2Int boardSize = new(10, 20);
+    public GameData gameData;
+    public UnityEvent<int> onClearLines;
+    public UnityEvent onGameOver;
+    public UnityEvent<Tetromino> onPieceSpawn;
     
     private List<int> _bag = new(); 
-
+    
     private void Awake()
     {
         Time.timeScale = 1;
@@ -115,11 +113,11 @@ public class Board : MonoBehaviour
         if (IsValidPosition(activePiece, spawnPosition))
         {
             Set(activePiece);
-            OnPieceSpawn.Invoke(activePiece.data.tetromino); 
+            onPieceSpawn.Invoke(activePiece.data.tetromino); 
         }
         else
         {
-            OnGameOver.Invoke();
+            onGameOver.Invoke();
         }
 
         SetNextPiece();
@@ -135,7 +133,7 @@ public class Board : MonoBehaviour
             {
                 return false;
             }
-            if (!Bounds.Contains((Vector2Int)tilePosition))
+            if (!bounds.Contains((Vector2Int)tilePosition))
             {
                 return false;
             }
@@ -165,7 +163,7 @@ public class Board : MonoBehaviour
     {
         List<int> rowsToClear = new();
 
-        for (int row = Bounds.yMin; row < Bounds.yMax; row++)
+        for (int row = bounds.yMin; row < bounds.yMax; row++)
         {
             if (IsLineFull(row))
             {
@@ -185,7 +183,7 @@ public class Board : MonoBehaviour
             SoundManager.Instance.PlaySfx("ClearLine");
             yield return new WaitForSeconds(0.5f);
             MoveRowsDown();
-            OnClearLines.Invoke(rowsToClear.Count);
+            onClearLines.Invoke(rowsToClear.Count);
             
             isClearing = false;
         }
@@ -193,11 +191,11 @@ public class Board : MonoBehaviour
 
     private void MoveRowsDown()
     {
-        int targetRow = Bounds.yMin;
-        for (int row = Bounds.yMin; row < Bounds.yMax; row++)
+        int targetRow = bounds.yMin;
+        for (int row = bounds.yMin; row < bounds.yMax; row++)
         {
             if (IsRowEmpty(row) || targetRow == row) continue;
-            for (int col = Bounds.xMin; col < Bounds.xMax; col++)
+            for (int col = bounds.xMin; col < bounds.xMax; col++)
             {
                 Vector3Int sourcePosition = new(col, row, 0);
                 TileBase tile = tilemap.GetTile(sourcePosition);
@@ -212,7 +210,7 @@ public class Board : MonoBehaviour
 
     private bool IsRowEmpty(int row)
     {
-        for (int col = Bounds.xMin; col < Bounds.xMax; col++)
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
         {
             Vector3Int position = new(col, row, 0);
         
@@ -226,20 +224,20 @@ public class Board : MonoBehaviour
 
     private IEnumerator ClearLine(int row)
     {
-        int center = (Bounds.xMin + Bounds.xMax) / 2;
+        int center = (bounds.xMin + bounds.xMax) / 2;
 
-        for (int i = 0; i <= Bounds.xMax - Bounds.xMin; i++)
+        for (int i = 0; i <= bounds.xMax - bounds.xMin; i++)
         {
             int left = center - i;
             int right = center + i;
 
-            if (left >= Bounds.xMin)
+            if (left >= bounds.xMin)
             {
                 Vector3Int leftPos = new(left, row, 0);
                 tilemap.SetTile(leftPos, null);
             }
             
-            if (right < Bounds.xMax)
+            if (right < bounds.xMax)
             {
                 Vector3Int rightPos = new(right, row, 0);
                 tilemap.SetTile(rightPos, null);
@@ -252,7 +250,7 @@ public class Board : MonoBehaviour
     
     private bool IsLineFull(int row)
     {
-        for (int col = Bounds.xMin; col < Bounds.xMax; col++)
+        for (int col = bounds.xMin; col < bounds.xMax; col++)
         {
             Vector3Int position = new(col, row, 0);
 
