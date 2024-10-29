@@ -119,15 +119,14 @@ public class Board : MonoBehaviour
         {
             onGameOver.Invoke();
         }
-
         SetNextPiece();
     }
 
     public bool IsValidPosition(Piece piece, Vector3Int position)
     {
-        for (int i = 0; i < piece.cells.Length; i++)
+        foreach (Vector3Int piecePos in piece.cells)
         {
-            Vector3Int tilePosition = piece.cells[i] + position;
+            Vector3Int tilePosition = piecePos + position;
 
             if (tilemap.HasTile(tilePosition))
             {
@@ -138,6 +137,7 @@ public class Board : MonoBehaviour
                 return false;
             }
         }
+
         return true;
     }
 
@@ -191,15 +191,14 @@ public class Board : MonoBehaviour
 
     private void MoveRowsDown()
     {
-        int targetRow = GetTargetRow(); 
-        for (int row = bounds.yMin; row < bounds.yMax; row++)
+        int targetRow = GetTargetRow();
+        for (int row = targetRow + 1; row < bounds.yMax; row++)
         {
-            if (IsRowEmpty(row) || targetRow == row) continue;
+            if (IsRowEmpty(row)) continue;
             for (int col = bounds.xMin; col < bounds.xMax; col++)
             {
                 Vector3Int sourcePosition = new(col, row, 0);
                 TileBase tile = tilemap.GetTile(sourcePosition);
-
                 Vector3Int targetPosition = new(col, targetRow, 0);
                 tilemap.SetTile(targetPosition, tile);
                 tilemap.SetTile(sourcePosition, null);
@@ -210,12 +209,10 @@ public class Board : MonoBehaviour
 
     private int GetTargetRow()
     {
-        for (int row = bounds.yMax - 1; row >= bounds.yMin; row--)
+        for (int row = bounds.yMin; row < bounds.yMax; row++)
         {
             if (IsRowEmpty(row))
-            {
                 return row;
-            }
         }
         return bounds.yMin;
     }
