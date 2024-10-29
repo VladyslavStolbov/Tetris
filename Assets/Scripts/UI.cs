@@ -35,19 +35,19 @@ public class UI : MonoBehaviour
 	private Dictionary<Tetromino, Text> _tetrominoTextMapping;
 
 	
-	private TetrisInput tetrisInput;
+	private TetrisInput _tetrisInput;
 	
 	private void Awake()
 	{
 		CreateDict();
 
-		tetrisInput = new TetrisInput();
-		tetrisInput.UI.Cancel.performed += context => TogglePauseMenu();
+		_tetrisInput = new TetrisInput();
+		_tetrisInput.UI.Cancel.performed += _ => TogglePauseMenu();
 	}
 
 	private void OnEnable()
 	{
-		tetrisInput.Enable();
+		_tetrisInput.Enable();
 		UpdateUI();
 	}
 		

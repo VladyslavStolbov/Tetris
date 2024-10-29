@@ -14,7 +14,6 @@ public class GameData : ScriptableObject
 	public int level;
 	public int linesCleared;
 	public int linesForLevelUp;
-
 	public Dictionary<Tetromino, int> Statistics; 
 
 	private void Awake()
@@ -50,16 +49,16 @@ public class GameData : ScriptableObject
 		switch (lines)
 		{
 			case 1:
-				score += (oneLinePoints * (level != 0 ? level : 1)); // multiply on level, if level = 0 - multiply by 1
+				score += oneLinePoints * (level != 0 ? level : 1); // multiply on level, if level = 0 - multiply by 1
 				break;
 			case 2:
-				score += (twoLinePoints * (level != 0 ? level : 1));
+				score += twoLinePoints * (level != 0 ? level : 1);
 				break;
 			case 3:
-				score += (threeLinePoints * (level != 0 ? level : 1));
+				score += threeLinePoints * (level != 0 ? level : 1);
 				break;
 			case 4:
-				score += (fourLinePoints * (level != 0 ? level : 1));
+				score += fourLinePoints * (level != 0 ? level : 1);
 				break;
 		}
 	}
@@ -80,13 +79,13 @@ public class GameData : ScriptableObject
 	{
 		Statistics = new Dictionary<Tetromino, int>
 		{
-			{ Tetromino.T , 0},	
-			{ Tetromino.J , 0},	
-			{ Tetromino.Z , 0},	
-			{ Tetromino.O , 0},	
-			{ Tetromino.S , 0},	
-			{ Tetromino.L , 0},	
-			{ Tetromino.I , 0},	
+			{ Tetromino.T, 0 },	
+			{ Tetromino.J, 0 },	
+			{ Tetromino.Z, 0 },	
+			{ Tetromino.O, 0 },	
+			{ Tetromino.S, 0 },	
+			{ Tetromino.L, 0 },	
+			{ Tetromino.I, 0 }	
 		};
 	}
 } 

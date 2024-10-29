@@ -5599,7 +5599,7 @@ MonoBehaviour:
   previewPosition: {x: 10, y: 6, z: 0}
   boardSize: {x: 10, y: 20}
   gameData: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
-  OnClearLines:
+  onClearLines:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
@@ -5626,7 +5626,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnGameOver:
+  onGameOver:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 251849427}
@@ -5689,7 +5689,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPieceSpawn:
+  onPieceSpawn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}

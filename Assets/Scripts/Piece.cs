@@ -6,27 +6,27 @@ using UnityEngine.InputSystem.Interactions;
 
 public class Piece : MonoBehaviour
 {
-	public Board board { get; private set; }
 	public TetrominoData data { get; private set; }
 	public Vector3Int[] cells { get; private set; }
 	public Vector3Int position { get; private set; }
-	public int rotationIndex { get; private set; }
-	public TetrisInput tetrisInput { get; private set; }
 
 	private float _stepDelay;
 	private float _lockDelay = 0.3f;
 	
+	private Board _board;
+	private TetrisInput _tetrisInput;
+	private int _rotationIndex;
 	private float _stepTime;
 	private float _lockTime;
 	
 	public void Initialize(Board board, Vector3Int position, TetrominoData data)
 	{
-		this.board = board;
+		_board = board;
 		this.position = position;
 		this.data = data;
 
 		SetStepDelay(board.gameData.level);
-		rotationIndex = 0;
+		_rotationIndex = 0;
 		_stepTime = Time.time + _stepDelay;
 		_lockTime = 0f;
 
@@ -44,31 +44,31 @@ public class Piece : MonoBehaviour
 
 	private void Awake()
 	{
-		tetrisInput = new TetrisInput();
+		_tetrisInput = new TetrisInput();
 
 		ManageMovement();
-		tetrisInput.Gameplay.RotateLeft.performed += context => Rotate(-1);
-		tetrisInput.Gameplay.RotateRight.performed += context => Rotate(1); 
-		tetrisInput.Gameplay.HardDrop.performed += context => HardDrop();
+		_tetrisInput.Gameplay.RotateLeft.performed += _ => Rotate(-1);
+		_tetrisInput.Gameplay.RotateRight.performed += _ => Rotate(1); 
+		_tetrisInput.Gameplay.HardDrop.performed += _ => HardDrop();
 	}
 
 	private void OnEnable()
 	{
-		tetrisInput.Enable();	
+		_tetrisInput.Enable();	
 	}
 
 	private void OnDisable()
 	{
-		tetrisInput.Disable();
+		_tetrisInput.Disable();
 	}
 
 	private void Update()
 	{
-		if (board.isClearing) return;
+		if (_board.isClearing) return;
 		
 		ManageGameplayInput();
 		
-		board.Clear(this);
+		_board.Clear(this);
 
 		_lockTime += Time.deltaTime;
 		
@@ -77,26 +77,26 @@ public class Piece : MonoBehaviour
 			Step();
 		}
 		
-		board.Set(this);
+		_board.Set(this);
 	}
 
 	private void ManageGameplayInput()
 	{
 		if (Time.timeScale == 0)
 		{
-			tetrisInput.Gameplay.Disable();
+			_tetrisInput.Gameplay.Disable();
 		}
 		else
 		{
-			tetrisInput.Gameplay.Enable();
+			_tetrisInput.Gameplay.Enable();
 		}
 	}
 
 	private void ManageMovement()
 	{
-		RegisterMovement(tetrisInput.Gameplay.MoveLeft, MoveLeft);
-		RegisterMovement(tetrisInput.Gameplay.MoveRight, MoveRight);
-		RegisterMovement(tetrisInput.Gameplay.MoveDown, MoveDown);
+		RegisterMovement(_tetrisInput.Gameplay.MoveLeft, MoveLeft);
+		RegisterMovement(_tetrisInput.Gameplay.MoveRight, MoveRight);
+		RegisterMovement(_tetrisInput.Gameplay.MoveDown, MoveDown);
 	}
 
 	private void RegisterMovement(InputAction action, Action moveAction)
@@ -114,7 +114,7 @@ public class Piece : MonoBehaviour
 			SoundManager.Instance.PlaySfx("Move");
 		};
 
-		action.canceled += context =>
+		action.canceled += _ =>
 		{
 			CancelInvoke(moveAction.Method.Name);
 		};
@@ -130,7 +130,7 @@ public class Piece : MonoBehaviour
 		switch (level)
 		{
 			case < 10:
-				_stepDelay = 0.8f - (level * 0.08f);
+				_stepDelay = 0.8f - level * 0.08f;
 				break;
 			case >= 10 and <= 18:
 				_stepDelay = 0.1f;
@@ -155,31 +155,31 @@ public class Piece : MonoBehaviour
 
 	private void Lock()
 	{
-		board.Set(this);
+		_board.Set(this);
 		StartCoroutine(ClearAndLock());
 	}
 
 	private IEnumerator ClearAndLock()
 	{
-		yield return StartCoroutine(board.ClearLines());
-		board.SpawnPiece();
+		yield return StartCoroutine(_board.ClearLines());
+		_board.SpawnPiece();
 	}
 
 	private void HardDrop()
 	{
-		if (board.isClearing) return;
+		if (_board.isClearing) return;
 		
-		board.Clear(this);
+		_board.Clear(this);
 		
 		Vector3Int dropPosition = position;
 
-		while (board.IsValidPosition(this, dropPosition + Vector3Int.down))
+		while (_board.IsValidPosition(this, dropPosition + Vector3Int.down))
 		{
 			dropPosition += Vector3Int.down;
 		}
 
 		position = dropPosition;
-		board.Set(this);
+		_board.Set(this);
 		
 		Lock();
 
@@ -188,15 +188,15 @@ public class Piece : MonoBehaviour
 
 	private bool Move(Vector2Int translation)
 	{
-		if (board.isClearing) return false;
+		if (_board.isClearing) return false;
 		
-		board.Clear(this);
+		_board.Clear(this);
 		
 		Vector3Int newPosition = position;
 		newPosition.x += translation.x;
 		newPosition.y += translation.y;
 
-		bool valid = board.IsValidPosition(this, newPosition);
+		bool valid = _board.IsValidPosition(this, newPosition);
 
 		if (valid)
 		{
@@ -212,16 +212,16 @@ public class Piece : MonoBehaviour
 	
 	private void Rotate(int direction)
 	{
-		board.Clear(this);
+		_board.Clear(this);
 		
-		int originalRotation = rotationIndex;
-		rotationIndex += Wrap(rotationIndex + direction, 0, 4);
+		int originalRotation = _rotationIndex;
+		_rotationIndex += Wrap(_rotationIndex + direction, 0, 4);
 		
 		ApplyRotationMatrix(direction);
 
-		if (!TestWallKicks(rotationIndex, direction))
+		if (!TestWallKicks(_rotationIndex, direction))
 		{
-			rotationIndex = originalRotation;
+			_rotationIndex = originalRotation;
 			ApplyRotationMatrix(-direction);
 		}
 		
@@ -241,13 +241,13 @@ public class Piece : MonoBehaviour
 				case Tetromino.O:
 					cell.x -= 0.5f;
 					cell.y -= 0.5f;
-					x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
-					y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+					x = Mathf.CeilToInt(cell.x * Data.RotationMatrix[0] * direction + cell.y * Data.RotationMatrix[1] * direction);
+					y = Mathf.CeilToInt(cell.x * Data.RotationMatrix[2] * direction + cell.y * Data.RotationMatrix[3] * direction);
 					break;
 				
 				default:
-					x = Mathf.RoundToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
-					y = Mathf.RoundToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
+					x = Mathf.RoundToInt(cell.x * Data.RotationMatrix[0] * direction + cell.y * Data.RotationMatrix[1] * direction);
+					y = Mathf.RoundToInt(cell.x * Data.RotationMatrix[2] * direction + cell.y * Data.RotationMatrix[3] * direction);
 					break;
 			}
 
