@@ -5532,6 +5532,7 @@ GameObject:
   - component: {fileID: 1079867116}
   - component: {fileID: 1079867118}
   - component: {fileID: 1079867119}
+  - component: {fileID: 1079867121}
   - component: {fileID: 1079867120}
   m_Layer: 0
   m_Name: Board
@@ -5758,6 +5759,21 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}
+--- !u!114 &1079867121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079867115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd19f931daaa23438921ef9998154dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 180611719e65b1b4eb1baeb9fecf44bf, type: 2}
+  material: {fileID: 2100000, guid: 58873d24b967ba8439f99bf97b9ca88c, type: 2}
+  hue: 1
 --- !u!114 &1153067601
 MonoBehaviour:
   m_ObjectHideFlags: 0
