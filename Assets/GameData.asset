@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aae9ddb0193c2941b6f9e91d3dd0d9a, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 0
-  topScore: 380
+  score: 1000
+  topScore: 2060
   oneLinePoints: 40
   twoLinePoints: 100
   threeLinePoints: 300
   fourLinePoints: 1200
-  level: 0
-  linesCleared: 0
-  linesForLevelUp: 10
+  level: 3
+  linesCleared: 13
+  linesForLevelUp: 5

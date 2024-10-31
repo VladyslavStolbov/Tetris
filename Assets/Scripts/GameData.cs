@@ -16,21 +16,15 @@ public class GameData : ScriptableObject
 	public int linesForLevelUp;
 	public Dictionary<Tetromino, int> Statistics; 
 
-	private void Awake()
-	{
-		ResetStatistics();
-	}
+	private void Awake() => ResetStatistics();
 
-	private void OnEnable()
-	{
-		ResetData();
-	}
+	private void OnEnable() => ResetData();
 
 	public void ResetData()
 	{
 		score = 0;	
 		linesCleared = 0;
-		level = 0;
+		level = 1;
 		ResetStatistics();
 	}
 
@@ -46,21 +40,8 @@ public class GameData : ScriptableObject
 	
 	private void UpdateScore(int lines)
 	{
-		switch (lines)
-		{
-			case 1:
-				score += oneLinePoints * (level != 0 ? level : 1); // multiply on level, if level = 0 - multiply by 1
-				break;
-			case 2:
-				score += twoLinePoints * (level != 0 ? level : 1);
-				break;
-			case 3:
-				score += threeLinePoints * (level != 0 ? level : 1);
-				break;
-			case 4:
-				score += fourLinePoints * (level != 0 ? level : 1);
-				break;
-		}
+		int[] linePoints = { 0, oneLinePoints, twoLinePoints, threeLinePoints, fourLinePoints };
+		score += linePoints[lines] * level;
 	}
 
 	private void UpdateTopScore()
@@ -73,7 +54,7 @@ public class GameData : ScriptableObject
 	
 	private void UpdateLinesCleared(int lines) => linesCleared += lines;
 	
-	private void UpdateLevel() => level = linesCleared / linesForLevelUp;
+	private void UpdateLevel() => level = Mathf.Max(1, linesCleared / linesForLevelUp + 1);
 
 	private void ResetStatistics()
 	{

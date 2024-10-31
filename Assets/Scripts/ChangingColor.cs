@@ -5,10 +5,28 @@ public class ChangingColor : MonoBehaviour
 {
 	[SerializeField] private GameData gameData;
 	[SerializeField] private Material material;
-	[SerializeField] private float hue;
+	
+	private float _hue = 1f;
+	private int _previousLevel = 1;
+	
+	private void Start() => material.SetFloat("_Hue", _hue);
 
-	private void Update()
+	public void AppendColor()
 	{
-		material.SetFloat("_Hue", hue);
+		if (gameData.level > 1 && gameData.level != _previousLevel)
+		{
+			if (_hue > 0)
+			{
+				_hue -= 0.1f;
+				_hue *= -1;
+			}
+			else if (_hue < 0)
+			{
+				_hue *= -1;
+			}
+
+			material.SetFloat("_Hue", _hue);
+			_previousLevel = gameData.level;
+		}
 	}
 }
