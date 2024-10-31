@@ -85,7 +85,7 @@ public class SoundManager : MonoBehaviour
 	{
 		musicSource.volume = volume;
 	}
-
+	
 	public void SFXVolume(float volume)
 	{
 		sfxSource.volume = volume;

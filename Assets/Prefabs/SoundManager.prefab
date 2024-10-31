@@ -320,7 +320,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cd348b36879aa3b47a7592fdaea4c046, type: 3}
   - name: GameOver
     clips:
-    - {fileID: 8300000, guid: 4f313b72ac02f50499c80a0420ff1899, type: 3}
+    - {fileID: 8300000, guid: 4d2b633ae1190dc4d8554b92d2dba59c, type: 3}
   - name: ClearLine
     clips:
     - {fileID: 8300000, guid: 6b3670f7072f19449b9be6c11ed9b26c, type: 3}

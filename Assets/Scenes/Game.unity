@@ -5617,7 +5617,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: UpdateUI
+        m_MethodName: Update
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5680,7 +5680,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: UpdateUI
+        m_MethodName: Update
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5719,7 +5719,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 923917402}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: UpdateUI
+        m_MethodName: Update
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17044,10 +17044,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 484028570937782744, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2012442398523490385, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17088,69 +17084,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3963244953209456944, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4817397707841828147, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
       propertyPath: m_Name
       value: SoundManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781439028794405331, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901158886804049942, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: sfxSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: sfxToggle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: musicSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: musicToggle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: musicSounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: musicSounds.Array.data[2].name
-      value: GameOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: musicSounds.Array.data[2].clips.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: 'musicSounds.Array.data[2].clips.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 4d2b633ae1190dc4d8554b92d2dba59c, type: 3}
-    - target: {fileID: 7423323611771093487, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8645790684369546185, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

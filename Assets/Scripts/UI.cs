@@ -48,7 +48,7 @@ public class UI : MonoBehaviour
 	private void OnEnable()
 	{
 		_tetrisInput.Enable();
-		UpdateUI();
+		Update();
 	}
 		
 	private void CreateDict()
@@ -82,20 +82,20 @@ public class UI : MonoBehaviour
 	{
 		gameOverMenu.SetActive(!gameOverMenu.activeSelf);
 		finalScoreText.text = gameData.score.ToString();
-		SoundManager.Instance.PlayMusic("GameOver", loop: false);
+		SoundManager.Instance.PlaySfx("GameOver");
 		Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 	}
 	
-	public void UpdateUI()
+	public void Update()
 	{
 		scoreText.text = $"{gameData.score:000000}";
 		topScoreText.text = $"{gameData.topScore:000000}";
 		levelText.text = $"{gameData.level:00}"; 
 		linesClearedText.text = $"{gameData.linesCleared:00}";
-		UpdateStatisticsUI();
+		UpdateStatistics();
 	} 
 
-	private void UpdateStatisticsUI()
+	private void UpdateStatistics()
 	{
 		foreach (var entry in _tetrominoTextMapping)
 		{

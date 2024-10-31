@@ -124,9 +124,9 @@ public class Board : MonoBehaviour
 
     public bool IsValidPosition(Piece piece, Vector3Int position)
     {
-        foreach (Vector3Int piecePos in piece.cells)
+        for (int i = 0; i < piece.cells.Length; i++)
         {
-            Vector3Int tilePosition = piecePos + position;
+            Vector3Int tilePosition = piece.cells[i] + position;
 
             if (tilemap.HasTile(tilePosition))
             {
