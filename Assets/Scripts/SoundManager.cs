@@ -42,14 +42,7 @@ public class SoundManager : MonoBehaviour
 
 	private void CheckCurrentScene()
 	{
-		if (SceneManager.GetActiveScene().name == "StartMenu")
-		{
-			PlayMusic("StartMenu");
-		}
-		else if (SceneManager.GetActiveScene().name == "Game")
-		{
-			PlayMusic("Game");	
-		}
+		PlayMusic("Game");	
 	}
 
 	public void PlayMusic(string clipName, bool loop = true)

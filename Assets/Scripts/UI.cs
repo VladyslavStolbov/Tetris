@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -33,8 +34,6 @@ public class UI : MonoBehaviour
 	[SerializeField] private Text cyanIText;
 
 	private Dictionary<Tetromino, Text> _tetrominoTextMapping;
-
-	
 	private TetrisInput _tetrisInput;
 	
 	private void Awake()
@@ -65,6 +64,10 @@ public class UI : MonoBehaviour
 		};
 	}
 
+	public void RestartButton() => SceneManager.LoadScene("Game");
+
+	public void QuitButton() => Application.Quit();
+	
 	public void TogglePauseMenu()
 	{
 		if (optionsMenu.gameObject.activeSelf) return;
