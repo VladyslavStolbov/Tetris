@@ -82,6 +82,7 @@ public class UI : MonoBehaviour
 	{
 		gameOverMenu.SetActive(!gameOverMenu.activeSelf);
 		finalScoreText.text = gameData.score.ToString();
+		SoundManager.Instance.musicSource.mute = true;
 		SoundManager.Instance.PlaySfx("GameOver");
 		Time.timeScale = Time.timeScale == 1 ? 0 : 1;
 	}

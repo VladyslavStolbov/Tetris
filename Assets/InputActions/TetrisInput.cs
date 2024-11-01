@@ -55,18 +55,18 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveRight"",
+                    ""name"": ""MoveLeft"",
                     ""type"": ""Button"",
-                    ""id"": ""2153fb40-0453-4869-9f99-0838902cb6b6"",
+                    ""id"": ""3b48c339-b743-4b56-85f9-b70849859ff6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold,Press"",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MoveLeft"",
+                    ""name"": ""MoveRight"",
                     ""type"": ""Button"",
-                    ""id"": ""3b48c339-b743-4b56-85f9-b70849859ff6"",
+                    ""id"": ""2153fb40-0453-4869-9f99-0838902cb6b6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold,Press"",
@@ -107,6 +107,17 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""84b122e5-bf55-435e-a8cc-f9ed0ead5c87"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f7374710-6b77-47b1-aca2-c7a8f6d7680a"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -118,12 +129,12 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c9a25f77-5d32-49b0-b9d3-65fa7363b04c"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""45498c94-91eb-4ef3-8212-ee27b7a6ff44"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MoveRight"",
+                    ""groups"": """",
+                    ""action"": ""RotateRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -134,7 +145,29 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""MoveLeft"",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77939c97-503c-4dd4-bb1c-e7b29700261f"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46184167-5fbb-43c6-9f6a-b4e619247754"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -146,6 +179,61 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78676e4e-943e-433c-8ec9-be7061b9fdb8"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c305ac63-173c-4941-88a4-abf5c5b71549"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9a25f77-5d32-49b0-b9d3-65fa7363b04c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0253472-a611-4da9-8e21-7b0901c46261"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6ef722a-179d-412e-8925-6451dcc08986"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -736,8 +824,8 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
         m_Gameplay_HardDrop = m_Gameplay.FindAction("HardDrop", throwIfNotFound: true);
         m_Gameplay_RotateLeft = m_Gameplay.FindAction("RotateLeft", throwIfNotFound: true);
         m_Gameplay_RotateRight = m_Gameplay.FindAction("RotateRight", throwIfNotFound: true);
-        m_Gameplay_MoveRight = m_Gameplay.FindAction("MoveRight", throwIfNotFound: true);
         m_Gameplay_MoveLeft = m_Gameplay.FindAction("MoveLeft", throwIfNotFound: true);
+        m_Gameplay_MoveRight = m_Gameplay.FindAction("MoveRight", throwIfNotFound: true);
         m_Gameplay_MoveDown = m_Gameplay.FindAction("MoveDown", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -815,8 +903,8 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_HardDrop;
     private readonly InputAction m_Gameplay_RotateLeft;
     private readonly InputAction m_Gameplay_RotateRight;
-    private readonly InputAction m_Gameplay_MoveRight;
     private readonly InputAction m_Gameplay_MoveLeft;
+    private readonly InputAction m_Gameplay_MoveRight;
     private readonly InputAction m_Gameplay_MoveDown;
     public struct GameplayActions
     {
@@ -825,8 +913,8 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
         public InputAction @HardDrop => m_Wrapper.m_Gameplay_HardDrop;
         public InputAction @RotateLeft => m_Wrapper.m_Gameplay_RotateLeft;
         public InputAction @RotateRight => m_Wrapper.m_Gameplay_RotateRight;
-        public InputAction @MoveRight => m_Wrapper.m_Gameplay_MoveRight;
         public InputAction @MoveLeft => m_Wrapper.m_Gameplay_MoveLeft;
+        public InputAction @MoveRight => m_Wrapper.m_Gameplay_MoveRight;
         public InputAction @MoveDown => m_Wrapper.m_Gameplay_MoveDown;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -846,12 +934,12 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
             @RotateRight.started += instance.OnRotateRight;
             @RotateRight.performed += instance.OnRotateRight;
             @RotateRight.canceled += instance.OnRotateRight;
-            @MoveRight.started += instance.OnMoveRight;
-            @MoveRight.performed += instance.OnMoveRight;
-            @MoveRight.canceled += instance.OnMoveRight;
             @MoveLeft.started += instance.OnMoveLeft;
             @MoveLeft.performed += instance.OnMoveLeft;
             @MoveLeft.canceled += instance.OnMoveLeft;
+            @MoveRight.started += instance.OnMoveRight;
+            @MoveRight.performed += instance.OnMoveRight;
+            @MoveRight.canceled += instance.OnMoveRight;
             @MoveDown.started += instance.OnMoveDown;
             @MoveDown.performed += instance.OnMoveDown;
             @MoveDown.canceled += instance.OnMoveDown;
@@ -868,12 +956,12 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
             @RotateRight.started -= instance.OnRotateRight;
             @RotateRight.performed -= instance.OnRotateRight;
             @RotateRight.canceled -= instance.OnRotateRight;
-            @MoveRight.started -= instance.OnMoveRight;
-            @MoveRight.performed -= instance.OnMoveRight;
-            @MoveRight.canceled -= instance.OnMoveRight;
             @MoveLeft.started -= instance.OnMoveLeft;
             @MoveLeft.performed -= instance.OnMoveLeft;
             @MoveLeft.canceled -= instance.OnMoveLeft;
+            @MoveRight.started -= instance.OnMoveRight;
+            @MoveRight.performed -= instance.OnMoveRight;
+            @MoveRight.canceled -= instance.OnMoveRight;
             @MoveDown.started -= instance.OnMoveDown;
             @MoveDown.performed -= instance.OnMoveDown;
             @MoveDown.canceled -= instance.OnMoveDown;
@@ -1062,8 +1150,8 @@ public partial class @TetrisInput: IInputActionCollection2, IDisposable
         void OnHardDrop(InputAction.CallbackContext context);
         void OnRotateLeft(InputAction.CallbackContext context);
         void OnRotateRight(InputAction.CallbackContext context);
-        void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveDown(InputAction.CallbackContext context);
     }
     public interface IUIActions

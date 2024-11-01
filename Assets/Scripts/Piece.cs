@@ -206,8 +206,8 @@ public class Piece : MonoBehaviour
 		return valid;
 	}
 
-	private void MoveLeft() => Move(Vector2Int.right);
-	private void MoveRight() => Move(Vector2Int.left);
+	private void MoveRight() => Move(Vector2Int.right);
+	private void MoveLeft() => Move(Vector2Int.left);
 	private void MoveDown() => Move(Vector2Int.down);
 	
 	private void Rotate(int direction)
