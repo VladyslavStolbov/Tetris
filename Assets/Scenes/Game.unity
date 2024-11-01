@@ -17088,6 +17088,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: sfxSounds.Array.data[0].clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: musicSounds.Array.data[0].clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 79434fdf41eb7b74786acf1ab55a298c, type: 3}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d43d56bc6af41704b96a52546818f7e2, type: 3}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'sfxSounds.Array.data[1].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: cd348b36879aa3b47a7592fdaea4c046, type: 3}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'sfxSounds.Array.data[4].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a2e5465f8ce4964c98d201a2ee423e4, type: 3}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'musicSounds.Array.data[0].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: f318bdc6d9392e340912a15632ea338c, type: 3}
+    - target: {fileID: 7101811988498505199, guid: 36b06d3ce358e1e4f8b0d0866fe04745, type: 3}
+      propertyPath: 'musicSounds.Array.data[0].clips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 667611a48a68d4846a4bb1ca0095629d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
